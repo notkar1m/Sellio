@@ -1,0 +1,65 @@
+{%extends "base.html"%}
+
+{%block head%}
+<script src="static/js/create.js"></script>
+<link rel="stylesheet" href="static/css/create.css">
+<link rel="stylesheet" href="static/css/index.css">
+{%endblock%}
+
+{%block navbar%} 
+    {%if not logged%}
+          <a href="/" class="navbar-links">Home</a>
+          <a onclick="ShowLogin()"class="navbar-links">Login</a>
+          <div class="new-listing-btn" onclick="ShowAuth()"><i class="fas fa-user-plus"></i><span>Sign up</span></div>
+          {%else%}
+           <a href="/" class="navbar-links">Home</a>
+      <a href="/chats" class="navbar-links">Chats</a>
+      <a href="/favorites" class="navbar-links">Favorites</a>
+      <div class="new-listing-btn" onclick="window.location.href = '/new-listing'"><i class="fas fa-plus-circle"></i><span>New Listing</span></div>
+      <img onclick="$('#user-opts').toggle()"id="pfp" src="https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar"> 
+      <div id="user-opts" style="display:none">
+        <h3 id="user-name">Logged as {{username}}</h3>
+        <div class="options"><i class="fas fa-user-circle"></i> Profile</div>
+        <div class="options"><i class="fas fa-cog"></i> Settings</div>
+        <div class="options"  onclick="window.location.href = '/logout'"><i class="fas fa-sign-out-alt"></i> <span style="color: #FF6868;">Log out</span></div>
+      </div>
+          {%endif%}
+    {%endblock%}
+
+{%block content%}
+
+      <div id="images-container">
+      <div id="images-container">
+	      <h3>Images</h3>
+	      <div id="plus-div"><label for="images-files">+</label></div>
+          
+          <input name="images[]" type="file" id="images-files"  accept=" image/gif, image/jpeg" multiple>
+	      <div id="result"></div>
+	      <div id="clear-btn">Clear images</div>
+	</div>
+
+	<div id="title-container"><h3>Title</h3> <input type="text" id="title"placeholder="Enter title..."></div>
+	<div id="desc-container"><h3>Description</h3> <textarea id="description"type="text" placeholder="Enter description..."></textarea></div>
+	<br>
+	<br>
+  <label id="used-container"onclick="$('#new-radio').prop('checked', false);">
+    <span>Used</span>
+    <input type="radio" id="used-radio">
+  </label>
+
+  <label id="new-container" onclick="$('#used-radio').prop('checked', false);">
+    <span>New</span>
+    <input checked="true"type="radio" id="new-radio">
+  </label>
+  <br>
+  	<div id="price-container"><h3>Price</h3> <input id="price" type="text" placeholder="Enter price..."></div>
+	  <br>
+	  <br>
+	  <div  id="publish-btn">Publish</div>
+	  <br>
+	  <br>
+	  <br>
+	  <div></div>
+
+
+{%endblock%}

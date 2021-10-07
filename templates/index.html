@@ -1,0 +1,61 @@
+{%extends "base.html"%}
+
+
+  {%block head%}    
+  <link rel="stylesheet" href="/static/css/index.css" /> 
+  <script src="static/js/index.js"></script>
+  {%endblock%}
+  {%block title%} Home {%endblock%}
+   
+
+  {%block navbar%} 
+    {%if not logged%}
+          <a href="/" class="navbar-links">Home</a>
+          <a onclick="ShowLogin()"class="navbar-links">Login</a>
+          <div class="new-listing-btn" onclick="ShowAuth()"><i class="fas fa-user-plus"></i><span>Sign up</span></div>
+          {%else%}
+           <a href="/" class="navbar-links">Home</a>
+      <a href="/chats" class="navbar-links">Chats</a>
+      <a href="/favorites" class="navbar-links">Favorites</a>
+      <div class="new-listing-btn" onclick="window.location.href = '/new-listing'"><i class="fas fa-plus-circle"></i><span>New Listing</span></div>
+      <img onclick="$('#user-opts').toggle()"id="pfp" src="https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar"> 
+      <div id="user-opts" style="display:none">
+        <h3 id="user-name">Logged as {{username}}</h3>
+        <div class="options"><i class="fas fa-user-circle"></i> Profile</div>
+        <div class="options"><i class="fas fa-cog"></i> Settings</div>
+        <div class="options"  onclick="window.location.href = '/logout'"><i class="fas fa-sign-out-alt"></i> <span style="color: #FF6868;">Log out</span></div>
+      </div>
+          {%endif%}
+    {%endblock%}
+  {%block content%}
+    <div class="search-bar"><input autocomplete="on" placeholder="Search..."type="text"/><div id="search-btn"><i class="fas fa-search"></i></div></div>
+
+    <div class="component-selection">
+	<p>What type of component are you looking for ?</p>
+
+	<div id="component-list">
+		<div class="component"><div style="background-color:#FF9A02" class="icon"></div> <span>CPU</span></div>
+		<div class="component"><div style="background-color:#5498FF" class="icon"></div> <span>Storage</span></div>
+		<div class="component"><div style="background-color:#68E4FF" class="icon"></div> <span>CPU cooler</span></div>
+		<div class="component"><div style="background-color:#FFF500" class="icon"></div> <span>GPU</span></div>
+		<div class="component"><div style="background-color:#FF6868" class="icon"></div> <span>Motherboard</span></div>
+		<div class="component"><div style="background-color:#4F5D75" class="icon"></div> <span>Power Supply</span></div>
+		<div class="component"><div style="background-color:#80FF54" class="icon"></div> <span>Memory</span></div>
+		<div class="component"><div style="background-color:#27282F" class="icon"></div> <span>Case</span></div>
+	</div>
+
+  <!-- #region ITEM DIV EXAMPLE-->
+    <!-- <div class="item">
+      <img src="https://images.unsplash.com/photo-1542978709-19c95dc3bc7e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmFtJTIwbWVtb3J5fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80">
+      <p id="title">4GB ram</p>
+      <p id="price">3,500 EGP</p>
+
+    </div> -->
+  <!-- #endregion -->
+
+  <div id="search-results-grid" style="display: none">
+        
+  </div>
+
+    </div>
+{%endblock%}
