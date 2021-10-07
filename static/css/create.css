@@ -91,6 +91,7 @@
     border-radius: 13px;
     box-shadow: 0 0 15px -4px #00000047;
     outline: none;
+    text-align:center;
 }
 
 #title-container input::placeholder{
@@ -183,6 +184,7 @@ left: 33%;
     border-radius: 13px;
     box-shadow: 0 0 15px -4px #00000047;
     outline: none;
+    text-align:center;
 }
 
 #publish-btn {
@@ -196,7 +198,8 @@ left: 33%;
 	justify-content: center; 
 	border-radius: 10px;	
 	cursor: pointer;
-	margin: auto
+	margin: auto;
+    box-shadow: 0 0 20px #ef8354;
 }
 
 #publish-btn:hover {

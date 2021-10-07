@@ -1,3 +1,20 @@
 {
-    
+    "cNvyCucwha4GVKnSDVdyE4": {
+        "title": "some ram",
+        "description": "best ram ever",
+        "condition": "used",
+        "price": "200",
+        "id": "cNvyCucwha4GVKnSDVdyE4",
+        "imageType": "jfif",
+        "owner": "karim"
+    },
+    "SsbNHAnN9EWxVYnMHGB5EC": {
+        "title": "bill gates",
+        "description": "d",
+        "condition": "new",
+        "price": "100000",
+        "id": "SsbNHAnN9EWxVYnMHGB5EC",
+        "imageType": "jpg",
+        "owner": "karim"
+    }
 }

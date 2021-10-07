@@ -73,6 +73,14 @@ $(() => {
         let radioNew = $("#new-radio")
         let condition = radioNew.is(":checked") ? "new" : "used"
         let formData = new FormData();
+
+        if(!title || !description || !price || allFiles.length == 0){
+             iziToast.error({
+              title: 'Error',
+              message: 'Please fill out all the fields.',
+          });
+            return
+        }
         formData.append("title", title)
         formData.append("description", description)
         formData.append("price", price)

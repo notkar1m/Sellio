@@ -28,9 +28,9 @@
           {%endif%}
     {%endblock%}
   {%block content%}
-    <div class="search-bar"><input autocomplete="on" placeholder="Search..."type="text"/><div id="search-btn"><i class="fas fa-search"></i></div></div>
+    <div class="search-bar"><input oninput="Search(this.value)" autocomplete="on" placeholder="Search..."type="text"/><div id="search-btn"><i class="fas fa-search"></i></div></div>
 
-    <div class="component-selection">
+    <div class="component-selection" style="display:block">
 	<p>What type of component are you looking for ?</p>
 
 	<div id="component-list">
@@ -56,6 +56,23 @@
   <div id="search-results-grid" style="display: none">
         
   </div>
+
+    </div>
+
+
+    <div id="search-res" style="display: none">
+      
+
+      <!-- 
+        <div class="item-listing">
+        <img src="https://images.unsplash.com/photo-1542978709-19c95dc3bc7e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1374&q=80">
+        <h3>4GB ram</h3>
+        <br>
+        <p>$3,500</p>
+      </div>
+     -->
+  
+     
 
     </div>
 {%endblock%}

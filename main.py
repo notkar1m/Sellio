@@ -142,11 +142,48 @@ def add_listing():
         "description": description,
         "condition": condition,
         "price": price,
+        "id": listingId,
+        "imageType": imageExtension[1:],
+        "owner": request.cookies.get("name"),
         # "images": images,
     }
     dumpJson()
 
     return listingId
+
+
+@app.route('/search', methods=['POST'])
+def search():
+
+    text = request.form.get('text')
+    tl = text.lower()
+    res = []
+    for listing in listings:
+        listingl = listings[listing]["title"].lower()
+        if listingl in tl or tl.endswith(listingl) or listingl.endswith(tl) or tl.startswith(listingl) or listingl.startswith(tl) or tl == listingl or tl in listingl:
+            res.append(listings[listing])
+    
+    return jsonify({"res":res})
+
+
+@app.route('/listing/<listingId>')
+def lising(listingId):
+    if listingId not in listings:
+        flash("Listing not found.", category="error")
+        return redirect("/")
+    
+    cookie_name = request.cookies.get("name")
+    cookie_pw = request.cookies.get("pw")
+    if (
+    not cookie_name
+    or not cookie_pw
+    or user_data[cookie_name]["pw"] != hasher(cookie_pw)
+    ):
+        return render_template('listing.html', listing=listings[listingId],  logged=False, username=cookie_name, pw=cookie_pw, r=random.randint(0, 10000))
+
+
+    return render_template('listing.html', listing=listings[listingId],  logged=True, username=cookie_name, pw=cookie_pw, r=random.randint(0, 10000))
+            
 
 
 @app.route('/flash=<flashMessage>_url=<url>')

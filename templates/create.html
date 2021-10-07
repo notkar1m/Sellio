@@ -33,7 +33,7 @@
 	      <h3>Images</h3>
 	      <div id="plus-div"><label for="images-files">+</label></div>
           
-          <input name="images[]" type="file" id="images-files"  accept=" image/gif, image/jpeg" multiple>
+          <input style="display:none" name="images[]" type="file" id="images-files"  accept=" image/gif, image/jpeg" multiple>
 	      <div id="result"></div>
 	      <div id="clear-btn">Clear images</div>
 	</div>
@@ -52,7 +52,7 @@
     <input checked="true"type="radio" id="new-radio">
   </label>
   <br>
-  	<div id="price-container"><h3>Price</h3> <input id="price" type="text" placeholder="Enter price..."></div>
+  	<div id="price-container"><h3>Price</h3> <input onkeyup="this.value=this.value.replace(/[^\d]/,'')" id="price" type="number" placeholder="Enter price ($)"></div>
 	  <br>
 	  <br>
 	  <div  id="publish-btn">Publish</div>
