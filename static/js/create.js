@@ -73,8 +73,12 @@ $(() => {
         let radioNew = $("#new-radio")
         let condition = radioNew.is(":checked") ? "new" : "used"
         let formData = new FormData();
+        let category = $("#category").val()
 
-        if(!title || !description || !price || allFiles.length == 0){
+
+
+
+        if(!title || !description || !price || allFiles.length == 0 || category == "-"){
              iziToast.error({
               title: 'Error',
               message: 'Please fill out all the fields.',
@@ -85,6 +89,8 @@ $(() => {
         formData.append("description", description)
         formData.append("price", price)
         formData.append("condition", condition)
+        formData.append("category", category)
+
 		for (let i = 0; i < allFiles.length; i++) {
             const currFile = allFiles[i];
             formData.append(`image${i+1}`, currFile)
@@ -99,8 +105,7 @@ $(() => {
         }).then((response) => {
             return response.text()
         }).then((id) =>{
-		window.location.href ="/flash=Item%20Published!_url=EMPTY"
-        //TODO: Instead of redirect to the index, make it redirect to the newly published item's page
+		window.location.href ="/flash=Item%20Published!_url=listingSLASH" + id
         })
 
     }

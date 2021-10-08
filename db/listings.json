@@ -1,20 +1,29 @@
 {
-    "cNvyCucwha4GVKnSDVdyE4": {
-        "title": "some ram",
-        "description": "best ram ever",
+    "mSSAKPierqcXtHJwjuqJut": {
+        "title": "4GB ram",
+        "description": "some nice ram that ive been using for a bit less than a week and it works really well.",
         "condition": "used",
-        "price": "200",
-        "id": "cNvyCucwha4GVKnSDVdyE4",
-        "imageType": "jfif",
-        "owner": "karim"
+        "price": "98",
+        "id": "mSSAKPierqcXtHJwjuqJut",
+        "imageType": [
+            "jpg",
+            "jfif"
+        ],
+        "owner": "karim",
+        "category": "Memory"
     },
-    "SsbNHAnN9EWxVYnMHGB5EC": {
-        "title": "bill gates",
-        "description": "d",
+    "FSRtt6vCc5beMnX26KDWbT": {
+        "title": "billionaires",
+        "description": "billionaires",
         "condition": "new",
-        "price": "100000",
-        "id": "SsbNHAnN9EWxVYnMHGB5EC",
-        "imageType": "jpg",
-        "owner": "karim"
+        "price": "100000000",
+        "id": "FSRtt6vCc5beMnX26KDWbT",
+        "imageType": [
+            "jpg",
+            "jpg",
+            "jpg"
+        ],
+        "owner": "karim",
+        "category": "Memory"
     }
 }

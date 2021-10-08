@@ -128,12 +128,14 @@ def add_listing():
     condition = request.form.get("condition")
     price = request.form.get("price")
     images = request.files
-    print(images)
     listingId = uuid()
     os.mkdir(f"./static/listing_images/{listingId}")
+    category = request.form.get("category")
+    imageTypes = []
     for i in range(len(images)):
         image = images[f"image{i+1}"]
         imageExtension = os.path.splitext(image.filename)[1]
+        imageTypes.append(imageExtension[1:])
         image.save(f"./static/listing_images/{listingId}/{i}{imageExtension}")
 
 
@@ -143,8 +145,9 @@ def add_listing():
         "condition": condition,
         "price": price,
         "id": listingId,
-        "imageType": imageExtension[1:],
+        "imageType": imageTypes,
         "owner": request.cookies.get("name"),
+        "category": category,
         # "images": images,
     }
     dumpJson()
@@ -190,7 +193,8 @@ def lising(listingId):
 def customFlash(flashMessage, url):
     print(url)
     flash(flashMessage)
-    url = "/" if url == "EMPTY" else "/" + url
+    url = "/" if url == "EMPTY" else "/" + url.replace("SLASH", "/")
+
     return redirect(url)
 
     

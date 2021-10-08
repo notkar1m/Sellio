@@ -31,7 +31,7 @@ function Search(val) {
 			searchRes.append(`
 			
 			 <div class="item-listing" onclick="window.location.href='/listing/${listing.id}'">
-        <img src="/static/listing_images/${listing["id"]}/0.${listing["imageType"]}">
+        <img src="/static/listing_images/${listing["id"]}/0.${listing["imageType"][0]}">
         <h3>${listing["title"]}</h3>
         <br>
         <p>$${parseInt(listing["price"]).toLocaleString()}</p>

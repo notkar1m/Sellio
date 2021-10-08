@@ -42,6 +42,24 @@
 	<div id="desc-container"><h3>Description</h3> <textarea id="description"type="text" placeholder="Enter description..."></textarea></div>
 	<br>
 	<br>
+  
+  <h3 id="category-label">Category</h3>
+
+<select  id="category" >
+  <option value="-">Select</option>
+  <option value="CPU">CPU</option>
+  <option value="CPU cooler">CPU cooler</option>
+  <option value="Motherboard">Motherboard</option>
+  <option value="Memory">Memory</option>
+  <option value="Storage">Storage</option>
+  <option value="GPU">GPU</option>
+  <option value="Power Supply">Power Supply</option>
+  <option value="Case">Case</option>
+</select>
+	<br>
+	<br>
+	<br>
+	<br>
   <label id="used-container"onclick="$('#new-radio').prop('checked', false);">
     <span>Used</span>
     <input type="radio" id="used-radio">
@@ -51,6 +69,7 @@
     <span>New</span>
     <input checked="true"type="radio" id="new-radio">
   </label>
+  <br>
   <br>
   	<div id="price-container"><h3>Price</h3> <input onkeyup="this.value=this.value.replace(/[^\d]/,'')" id="price" type="number" placeholder="Enter price ($)"></div>
 	  <br>

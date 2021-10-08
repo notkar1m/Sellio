@@ -31,7 +31,12 @@
 
             <div id="title">{{listing["title"]}}</div>
             <div id="item-imgs">
-                  <img src="/static/listing_images/{{listing['id']}}/0.{{listing['imageType']}}">
+                  <i class="fas fa-chevron-circle-left" onclick="switchImageLeft()"></i>
+                  {%for i in range(listing["imageType"]|length)%}   
+                  <img class="listing-images" src="/static/listing_images/{{listing['id']}}/{{i}}.{{listing['imageType'][i]}}">
+                  {%endfor%}
+
+                  <i class="fas fa-chevron-circle-right" onclick="switchImageRight()"></i>
             </div>
             <div id="user-div">
                   <img src="https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar">
@@ -44,6 +49,7 @@
             
             <h3 id="price">{{listing["price"]}}</h3> 
             <h3 id="condition">{{listing["condition"].upper()}}</h3>
+            <h3 id="category">{{listing["category"]}}</h3>
       
       
             <div id="message-btn"><i class="fas fa-comment-dots"></i> Message</div>

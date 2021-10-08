@@ -343,8 +343,9 @@ body {
 	background: #EF8354;
 	padding: 1px;
 	border-radius: 10px;
-	width: 50%;
+	width: fit-content;
 	margin: auto;
+	padding: 0 10px 0 10px;
 }
 .item-listing:hover {
 	transform: scale(1.03);

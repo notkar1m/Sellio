@@ -34,7 +34,7 @@
     width: fit-content;
     padding: 10px;
     border-radius: 17px;
-    margin-left: 254px;
+    margin-left: 153px;
     margin-top: -112px;
     box-shadow: 0 0 15px #ef8354;
 }
@@ -47,10 +47,24 @@
     width: fit-content;
     padding: 5px 20px 5px 20px;
     border-radius: 28px;
-    margin-left: 475px;
+    margin-left: 416px;
     margin-top: -56px;
     box-shadow: 0 0 20px #4f5d75;
 }
+#category {
+    color: white;
+    background: #2D3142;
+    font-weight: 500;
+    font-size: 27px;
+    width: fit-content;
+    padding: 5px 20px 5px 20px;
+    border-radius: 28px;
+    margin-left: 557px;
+    margin-top: -50px;
+    box-shadow: 0 0 20px #2D3142;
+}
+
+
 
 #user-div {
     width: 485px;
@@ -114,4 +128,45 @@ h2 {
 }
 #message-btn:hover {
 	opacity: 0.8;
+}
+
+.listing-images {
+    display:none;
+}
+
+#item-imgs i:first-child {
+    font-size: 55px;
+    z-index: 100000;
+    position: absolute;
+    left: 115px;
+    text-shadow: 0 0 9px #00000082;
+    color: #171717;
+    cursor: pointer;
+    transition: 0.2s;
+    background: white;
+    border-radius: 50%;
+    padding: 5px
+}
+#item-imgs i:first-child:hover {
+
+    opacity: 0.8;
+    transform: scale(1.02);
+}
+
+#item-imgs .fa-chevron-circle-right {
+    font-size: 55px;
+    z-index: 100000;
+    position: absolute;
+    left: 703px;
+    text-shadow: 0 0 9px #00000082;
+    color: #171717;
+    cursor: pointer;
+    transition: 0.2s;
+    background: white;
+    border-radius: 50%;
+    padding: 5px;
+}
+#item-imgs .fa-chevron-circle-right:hover {
+        opacity: 0.8;
+    transform: scale(1.02);
 }

@@ -232,3 +232,22 @@ left: 33%;
 #clear-btn:hover {
 	background-color: #f09a75;
 }
+
+#category-label {
+    font-size: 23px;
+    font-weight: 600;
+    width: fit-content;
+}
+
+#category {
+        margin-left: 220px;
+    margin-top: 6px;
+    font-size: 25px;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 11px;
+    z-index: 1000000;
+    padding: 7px;
+    border: #EF8354 1px solid;
+    outline: none;
+}
+

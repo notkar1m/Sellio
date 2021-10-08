@@ -21,7 +21,7 @@
       <img onclick="$('#user-opts').toggle()"id="pfp" src="https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar"> 
       <div id="user-opts" style="display:none">
         <h3 id="user-name">Logged as {{username}}</h3>
-        <div class="options"><i class="fas fa-user-circle"></i> Profile</div>
+        <div class="options" onclick="window.location.href = '/user/{{username}}'"><i class="fas fa-user-circle"></i> Profile</div>
         <div class="options"><i class="fas fa-cog"></i> Settings</div>
         <div class="options"  onclick="window.location.href = '/logout'"><i class="fas fa-sign-out-alt"></i> <span style="color: #FF6868;">Log out</span></div>
       </div>
