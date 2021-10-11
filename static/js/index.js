@@ -1,3 +1,7 @@
+var accName;
+$(() => {
+	 accName = $("#user-name").text().split(" ")[2]
+})
 function Search(val) {
 	$("#search-res h2").remove()
 	if(val == ""){
@@ -29,16 +33,33 @@ function Search(val) {
 		}
 		for (let i = 0; i <res.length; i++) {
 			const listing = res[i];
-			searchRes.append(`
-			
-			 <div class="item-listing" onclick="window.location.href='/listing/${listing.id}'">
-        <img src="/static/listing_images/${listing["id"]}/0.${listing["imageType"][0]}">
-        <h3>${listing["title"]}</h3>
-        <br>
-        <p>$${parseInt(listing["price"]).toLocaleString()}</p>
-	<i class="far fa-heart" onclick="Fav(this, event)"></i>
-      </div>
-			`)
+			if(listing.owner == accName){
+
+				searchRes.append(`
+				
+				 <div class="item-listing" onclick="window.location.href='/listing/${listing.id}'">
+		<img src="/static/listing_images/${listing["id"]}/0.${listing["imageType"][0]}">
+		<h3>${listing["title"]}</h3>
+		<br>
+		<p>$${parseInt(listing["price"]).toLocaleString()}</p>
+		<i class="far fa-trash-alt" onclick="DeleteListing('${listing.id}')"></i>
+	      </div>
+				`)
+			}
+			else {
+
+
+				searchRes.append(`
+				
+				 <div class="item-listing" onclick="window.location.href='/listing/${listing.id}'">
+		<img src="/static/listing_images/${listing["id"]}/0.${listing["imageType"][0]}">
+		<h3>${listing["title"]}</h3>
+		<br>
+		<p>$${parseInt(listing["price"]).toLocaleString()}</p>
+		<i class="far fa-heart" onclick="Fav(this, event)"></i>
+	      </div>
+				`)
+			}
 			
 			fetch("/get-my-favs").then((response) => {
 				return response.json()
@@ -105,18 +126,34 @@ function chooseCategory(category){
 		data = data["res"]
 
 		data.forEach(listing => {
-			$("#search-res").append(`
+			if(listing.owner == accName){
 
-			
-			 <div class="item-listing" onclick="window.location.href='/listing/${listing.id}'">
-        <img src="/static/listing_images/${listing["id"]}/0.${listing["imageType"][0]}">
-        <h3>${listing["title"]}</h3>
-        <br>
-        <p>$${parseInt(listing["price"]).toLocaleString()}</p>
-	<i class="far fa-heart" onclick="Fav(this, event)"></i>
-      </div>
-			`)
-			
+				$("#search-res").append(`
+	
+				
+				 <div class="item-listing" onclick="window.location.href='/listing/${listing.id}'">
+		<img src="/static/listing_images/${listing["id"]}/0.${listing["imageType"][0]}">
+		<h3>${listing["title"]}</h3>
+		<br>
+		<p>$${parseInt(listing["price"]).toLocaleString()}</p>
+		<i class="far fa-trash-alt" onclick="DeleteListing('${listing.id}')"></i>
+	      </div>
+				`)
+				
+			}
+			else {
+				$("#search-res").append(`
+	
+				
+				 <div class="item-listing" onclick="window.location.href='/listing/${listing.id}'">
+		<img src="/static/listing_images/${listing["id"]}/0.${listing["imageType"][0]}">
+		<h3>${listing["title"]}</h3>
+		<br>
+		<p>$${parseInt(listing["price"]).toLocaleString()}</p>
+		<i class="far fa-heart" onclick="Fav(this, event)"></i>
+	      </div>
+				`)
+			}
 		});
 
 		if($("#search-res div").length == 0){
@@ -143,3 +180,22 @@ $(() => {
 		
 	});
 })
+
+
+
+function DeleteListing(id){
+	fetch("/remove-listing_id=" +id).then((res)=>{return res.json()}).then((res) => {
+		res = res["res"]
+		if (res == "success"){
+			window.location.pathname = "/flash=Item Deleted!_url=userSLASH" +$("#user-name").text().split(" ")[2]
+		}
+		else {
+			  iziToast.error({
+              title: 'Error deleting item',
+              message: res,
+          });
+		}
+	})
+	console.log("sdfsdf")
+
+}

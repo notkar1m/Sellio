@@ -352,7 +352,7 @@ body {
 	opacity: 0.9;
 }
 
-.fa-heart {
+.fa-heart,.fa-trash-alt {
 font-size: 24px;
     color: #eb5b5b;
     position: relative;
@@ -361,7 +361,7 @@ font-size: 24px;
     transition: 0.2s;
 }
 
-.fa-heart:hover {
+.fa-heart:hover, .fa-trash-alt:hover {
 	opacity: 0.8;
 	transform: scale(1.02);
 }

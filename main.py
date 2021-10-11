@@ -208,7 +208,7 @@ def user(targetName):
 
 @app.route('/add-to-fav_listingId=<listingId>')
 def addToFav(listingId):
-    username = request.cookies.get('username')
+    username = request.cookies.get('name')
     pw = request.cookies.get('pw')
 
     if hasher(pw) != user_data[username]["pw"]:
@@ -223,7 +223,7 @@ def addToFav(listingId):
 
 @app.route('/remove-from-fav_listingId=<listingId>')
 def removeFromFav(listingId):
-    username = request.cookies.get('username')
+    username = request.cookies.get('name')
     pw = request.cookies.get('pw')
 
     if hasher(pw) != user_data[username]["pw"]:
@@ -240,7 +240,7 @@ def removeFromFav(listingId):
 @app.route('/get-my-favs')
 def getMyFavs():
     pw = request.cookies.get('pw')
-    username = request.cookies.get('username')
+    username = request.cookies.get('name')
     if hasher(pw) == user_data[username]["pw"]:
         return jsonify({"res": user_data[username]["favs"]})
     else:
@@ -278,6 +278,25 @@ def search_with_category(category):
             res.append(listings[listing])
     return jsonify({"res": res})
 
+
+
+@app.route('/remove-listing_id=<id>')
+def removeListing(id):
+    pw = request.cookies.get('pw')
+    username = request.cookies.get('name')
+    print(pw, username)
+    if hasher(pw) != user_data[username]["pw"]:
+        return jsonify({"res":"wrong password"})
+    if id not in listings.keys():
+        return jsonify({"res":"listing not found"})
+
+    user_data[username]["listings"].remove(id)
+    del listings[id]
+    for user in user_data:
+        if id in user_data[user]["favs"]:
+            user_data[user]["favs"].remove(id)
+    dumpJson()
+    return jsonify({"res":"success"})
 
 @app.route('/flash=<flashMessage>_url=<url>')
 def customFlash(flashMessage, url):

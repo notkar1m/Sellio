@@ -30,7 +30,14 @@
 {%block content%}
       <div id="listing-container">
 
-            <div id="title">{{listing["title"]}} 	<i style="font-size:34px" class="far fa-heart" onclick="Fav(this, event)"></i></div>
+            <div id="title">{{listing["title"]}} 	
+                  {%if listing["owner"] == username%}
+                  <i style="font-size:34px" class="far fa-trash-alt" onclick="DeleteListing(`{{listing['id']}}`)"></i>
+                  {%else%}
+                  <i style="font-size:34px" class="far fa-heart" onclick="Fav(this, event)"></i>
+                  {%endif%}
+            </div>
+
             <div id="item-imgs">
                   <i class="fas fa-chevron-circle-left" onclick="switchImageLeft()"></i>
                   {%for i in range(listing["imageType"]|length)%}   

@@ -106,3 +106,21 @@ function UnFav(ele, event, noFetch){
 
 
 }
+
+
+function DeleteListing(id){
+	fetch("/remove-listing_id=" +id).then((res)=>{return res.json()}).then((res) => {
+		res = res["res"]
+		if (res == "success"){
+			window.location.pathname = "/flash=Item Deleted!_url=userSLASH" +$("#user-name").text().split(" ")[2]
+		}
+		else {
+			  iziToast.error({
+              title: 'Error deleting item',
+              message: res,
+          });
+		}
+	})
+	console.log("sdfsdf")
+
+}

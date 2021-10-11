@@ -177,6 +177,6 @@ h2 {
     font-weight: 500;
 }
 
-.fa-heart {
+.fa-heart, .fa-trash-alt {
     cursor: pointer;
 }
