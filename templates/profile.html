@@ -1,0 +1,59 @@
+{%extends "base.html"%}
+
+
+  {%block head%}    
+	<link rel="stylesheet" href="/static/css/profile.css">
+	 <link rel="stylesheet" href="/static/css/index.css" /> 
+   {%endblock%}
+   {%block title%} {{targetName}}'s Profile {%endblock%}
+   
+
+  {%block navbar%} 
+    {%if not logged%}
+          <a href="/" class="navbar-links">Home</a>
+          <a onclick="ShowLogin()"class="navbar-links">Login</a>
+          <div class="new-listing-btn" onclick="ShowAuth()"><i class="fas fa-user-plus"></i><span>Sign up</span></div>
+          {%else%}
+           <a href="/" class="navbar-links">Home</a>
+      <a href="/chats" class="navbar-links">Chats</a>
+      <a href="/favorites" class="navbar-links">Favorites</a>
+      <div class="new-listing-btn" onclick="window.location.href = '/new-listing'"><i class="fas fa-plus-circle"></i><span>New Listing</span></div>
+      <img onclick="$('#user-opts').toggle()"id="pfp" src="https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar"> 
+      <div id="user-opts" style="display:none">
+        <h3 id="user-name">Logged as {{username}}</h3>
+        <div class="options" onclick="window.location.href = '/user/{{username}}'"><i class="fas fa-user-circle"></i> Profile</div>
+        <div class="options"><i class="fas fa-cog"></i> Settings</div>
+        <div class="options"  onclick="window.location.href = '/logout'"><i class="fas fa-sign-out-alt"></i> <span style="color: #FF6868;">Log out</span></div>
+      </div>
+          {%endif%}
+    {%endblock%}
+  {%block content%}
+
+
+  <img id="target-pfp" src="https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar" alt="">
+  <h3 id="target-name">{{targetName}}</h3>             <div id="message-btn"><i class="fas fa-comment-dots"></i> Message</div>
+	<i class="fas fa-phone-alt"></i> <span id="phone">01234567898</span>
+
+	<hr>
+	<h2>Listings</h2>
+	<br>
+	<br>
+	<div id="search-res">
+		{%for listing in listings%}
+		<div class="item-listing" onclick="window.location.href='/listing/{{listing['id']}}'">
+        <img src="/static/listing_images/{{listing['id']}}/0.{{listing["imageType"][0]}}">
+        <h3>{{listing["title"]}}</h3>
+        <br>
+        <p class="price">{{listing["price"]}}</p>
+      </div>
+		{%endfor%}
+	</div>
+
+
+	<script>
+		for(let i = 0;i<$(".price").length;i++) {
+			const element = $(".price")[i]
+			$(element).html("$" +parseInt($(element).html()).toLocaleString())
+		}
+	</script>
+  {%endblock%}

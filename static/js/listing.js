@@ -3,11 +3,33 @@ var currImage;
 $(() => {
 	$("#price").html("$" +parseInt($("#price").html()).toLocaleString())
 	$(".listing-images:first").show()
-
+	$("#date").html(moment($("#date").html(),"YYYY/M/D/hh:mma").fromNow())
 	
 	 images = $("#item-imgs img")
 	 currImage = 0;
+
+
+	 if(images.length == 1){
+		 $(".fa-chevron-circle-right").css({
+			 "pointer-events": "none",
+			 "opacity": 0.5
+		 })	
+		  $(".fa-chevron-circle-left").css({
+			 "pointer-events": "none",
+			 "opacity": 0.5
+		 })
+	 }
+
+
+	 fetch("/get-my-favs").then((res) => {return res.json()}).then((data) =>{
+		 data = data["res"]
+		 if(data.includes($(".listing-images")[0].src.split("/")[5])) {
+			 Fav($(".fa-heart")[0], undefined, true)
+		 }
+		 
+	 })
 	
+
 })
 
 	function switchImageLeft() {
@@ -49,3 +71,38 @@ $(() => {
 		console.log(currImage);
 
 	}
+
+function Fav(ele, event, noFetch){
+	if(event)event.stopPropagation();
+	let parent = ele.parentElement;
+	$(ele).removeClass("far")
+	$(ele).addClass("fas")
+	$(ele).attr("onclick", "UnFav(this, event)")
+	if(noFetch){
+		return
+
+	}
+	fetch("/add-to-fav_listingId=" + $(".listing-images")[0].src.split("/")[5]).then((res)=>{return res.json()}).then(
+		(res)=>{
+			console.log(res["res"]);
+		}
+		)
+
+}
+
+
+function UnFav(ele, event, noFetch){
+	if(event)event.stopPropagation()
+	let parent = ele.parentElement;
+	$(ele).removeClass("fas")
+	$(ele).addClass("far")
+	$(ele).attr("onclick", "Fav(this, event)")
+	if(noFetch)return
+	fetch("/remove-from-fav_listingId=" + $(".listing-images")[0].src.split("/")[5]).then((res)=>{return res.json()}).then(
+		(res)=>{
+			console.log(res["res"]);
+		}
+		)
+
+
+}

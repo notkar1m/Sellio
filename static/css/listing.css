@@ -170,3 +170,13 @@ h2 {
         opacity: 0.8;
     transform: scale(1.02);
 }
+
+
+#date {
+    color: #727572;
+    font-weight: 500;
+}
+
+.fa-heart {
+    cursor: pointer;
+}

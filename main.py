@@ -45,6 +45,8 @@ def sign_up():
         user_data[name] = {}
         user_data[name]['pw'] = hasher(pw)
         user_data[name]['phone'] = phone
+        user_data[name]["listings"] = []
+        user_data[name]["favs"] = []
 
         dumpJson()
 
@@ -129,6 +131,7 @@ def add_listing():
     price = request.form.get("price")
     images = request.files
     listingId = uuid()
+    date = request.form.get("date")
     os.mkdir(f"./static/listing_images/{listingId}")
     category = request.form.get("category")
     imageTypes = []
@@ -148,8 +151,10 @@ def add_listing():
         "imageType": imageTypes,
         "owner": request.cookies.get("name"),
         "category": category,
+        "date": date
         # "images": images,
     }
+    user_data[request.cookies.get("name")]["listings"].append(listingId)
     dumpJson()
 
     return listingId
@@ -187,6 +192,91 @@ def lising(listingId):
 
     return render_template('listing.html', listing=listings[listingId],  logged=True, username=cookie_name, pw=cookie_pw, r=random.randint(0, 10000))
             
+
+@app.route('/user/<targetName>')
+def user(targetName):
+    if targetName not in user_data.keys() or not request.cookies.get("name") or not request.cookies.get("pw") or user_data[request.cookies.get("name")]["pw"] != hasher(request.cookies.get("pw")):
+        flash("User not found", category="error")
+        return redirect('/')
+    phone = user_data[targetName]["phone"]
+    targetListings = user_data[targetName]["listings"]
+    listingsRes = [listings[l] for l in targetListings]
+
+    return render_template("profile.html", phone=phone, listings=listingsRes,targetName=targetName,logged=True, username=request.cookies.get("name"), pw=request.cookies.get("pw"), r=random.randint(0, 10000))
+
+
+
+@app.route('/add-to-fav_listingId=<listingId>')
+def addToFav(listingId):
+    username = request.cookies.get('username')
+    pw = request.cookies.get('pw')
+
+    if hasher(pw) != user_data[username]["pw"]:
+        return jsonify({"res": "Wrong password"})
+
+    if listingId in listings.keys() and listingId not in user_data[username]["favs"]: 
+        user_data[username]["favs"].append(listingId)
+        dumpJson()
+        return jsonify({"res": "success"})
+    else:
+        return jsonify({"res":"listing not found"})
+
+@app.route('/remove-from-fav_listingId=<listingId>')
+def removeFromFav(listingId):
+    username = request.cookies.get('username')
+    pw = request.cookies.get('pw')
+
+    if hasher(pw) != user_data[username]["pw"]:
+        return jsonify({"res": "Wrong password"})
+
+    if listingId in listings and listingId in user_data[username]["favs"]: 
+        user_data[username]["favs"].remove(listingId)
+        dumpJson()
+        return jsonify({"res": "success"})
+    else:
+        return jsonify({"res":"listing not found"})
+
+
+@app.route('/get-my-favs')
+def getMyFavs():
+    pw = request.cookies.get('pw')
+    username = request.cookies.get('username')
+    if hasher(pw) == user_data[username]["pw"]:
+        return jsonify({"res": user_data[username]["favs"]})
+    else:
+        return jsonify({"res": "wrong password"}) 
+
+
+@app.route('/favorites')
+def favorites():
+    cookie_name = request.cookies.get('name')
+    cookie_pw = request.cookies.get('pw')
+    if cookie_name and cookie_pw:
+        try:
+            if user_data[cookie_name]['pw'] == hasher(cookie_pw):
+                favListings = []
+                for listing in user_data[cookie_name]['favs']:
+                    favListings.append(listings[listing])
+                
+
+                return render_template("favorites.html", favListings=favListings,logged=True, username=cookie_name, pw=cookie_pw, r=random.randint(0, 10000))
+            else:
+                flash("Please login first", category="error")
+                return redirect('/')
+        except KeyError:
+                flash("Please login first", category="error")
+                return redirect('/')
+    else:
+                flash("Please login first", category="error")
+                return redirect('/') 
+
+@app.route("/search-with-category_cat=<category>")
+def search_with_category(category):
+    res = []
+    for listing in listings:
+        if listings[listing]["category"] == category:
+            res.append(listings[listing])
+    return jsonify({"res": res})
 
 
 @app.route('/flash=<flashMessage>_url=<url>')

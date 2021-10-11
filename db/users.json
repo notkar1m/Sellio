@@ -1,6 +1,15 @@
 {
     "karim": {
         "pw": "202cb962ac59075b964b07152d234b70",
-        "phone": ""
+        "phone": "",
+        "listings": [
+            "mSSAKPierqcXtHJwjuqJut",
+            "FSRtt6vCc5beMnX26KDWbT",
+            "MbAFtSsnf5FeXYZzixjs4L"
+        ],
+        "favs": [
+            "FSRtt6vCc5beMnX26KDWbT",
+            "mSSAKPierqcXtHJwjuqJut"
+        ]
     }
 }

@@ -4,13 +4,14 @@
 <script src="/static/js/listing.js"></script>
 <link rel="stylesheet" href="/static/css/listing.css">
 <link rel="stylesheet" href="/static/css/index.css">
+<title>Sellio - Listing</title>
 {%endblock%}
 
 {%block navbar%} 
     {%if not logged%}
           <a href="/" class="navbar-links">Home</a>
           <a onclick="ShowLogin()"class="navbar-links">Login</a>
-          <div class="new-listing-btn" onclick="ShowAuth()"><i class="fas fa-user-plus"></i><span>Sign up</span></div>
+          <div class="new-listing-btn" onclick="ShowAuth()"><i onclick="Fav(this, event)" class="fas fa-user-plus"></i><span>Sign up</span></div>
           {%else%}
            <a href="/" class="navbar-links">Home</a>
       <a href="/chats" class="navbar-links">Chats</a>
@@ -29,7 +30,7 @@
 {%block content%}
       <div id="listing-container">
 
-            <div id="title">{{listing["title"]}}</div>
+            <div id="title">{{listing["title"]}} 	<i style="font-size:34px" class="far fa-heart" onclick="Fav(this, event)"></i></div>
             <div id="item-imgs">
                   <i class="fas fa-chevron-circle-left" onclick="switchImageLeft()"></i>
                   {%for i in range(listing["imageType"]|length)%}   
@@ -45,6 +46,9 @@
             </div>
             <h2>
                   {{listing["description"]}}
+                  <br>
+                  <br>
+                  <span id="date">{{listing["date"]}}</span>
             </h2>
             
             <h3 id="price">{{listing["price"]}}</h3> 
