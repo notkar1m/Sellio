@@ -196,6 +196,5 @@ function DeleteListing(id){
           });
 		}
 	})
-	console.log("sdfsdf")
 
 }

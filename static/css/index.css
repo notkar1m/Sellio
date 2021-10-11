@@ -55,11 +55,14 @@ body {
 }
 
 #pfp {
-	height: 40px;
 	position: absolute;
 	right: 5%;
 	cursor: pointer;
 	transition: 0.3s;
+	width: 44px;
+	height: 44px;
+	border-radius: 22px;
+	object-fit: cover;
 }
 #pfp:hover {
 	opacity:0.8;

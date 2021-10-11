@@ -151,6 +151,9 @@ input[type='radio']:checked:before {
   background:#EF8354;
 }
 
+
+
+
 @keyframes popup-anim {
 	from { transform:  translate(-50%, -50%)scale(0.4);opacity: 0.5}
 	to {transform:  translate(-50%, -50%)scale(1.0)}

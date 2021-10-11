@@ -30,7 +30,15 @@
   {%block content%}
 
 
-  <img id="target-pfp" src="https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar" alt="">
+  {%if targetName == username%}
+  <!-- <img id="target-pfp" class="change-pfp" src="https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar" alt=""> -->
+                     <img  id="target-pfp" class="change-pfp" src="/static/pfps/{{targetName}}.jpg?r={{r}}" onerror="if (this.src != 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar') this.src = 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar';">
+<i id="change-pfp-cam"class="fas fa-camera" onclick="ChangePfp()"></i>
+<input type="file" id="change-pfp-input" style="display:none" accept="image/jpeg">
+  {%else%}
+  <!-- <img id="target-pfp" src="https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar" alt=""> -->
+                       <img  id="target-pfp" src="/static/pfps/{{targetName}}.jpg?r={{r}}" onerror="if (this.src != 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar') this.src = 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar';">
+  {%endif%}
   <h3 id="target-name">{{targetName}}</h3>             <div id="message-btn"><i class="fas fa-comment-dots"></i> Message</div>
 	<i class="fas fa-phone-alt"></i> <span id="phone">01234567898</span>
 
@@ -55,5 +63,21 @@
 			const element = $(".price")[i]
 			$(element).html("$" +parseInt($(element).html()).toLocaleString())
 		}
-	</script>
+
+
+   function ChangePfp() {
+      $("#change-pfp-input").click()
+      $("#change-pfp-input")[0].onchange = (event) => {
+      let formData = new FormData();
+      formData.append("image", event.target.files[0])
+        fetch("/change-pfp", {
+          method: "POST",
+          body: formData
+        }).then(() => {
+          window.location.pathname = "flash=Profile picture change successfully!_url=userSLASH" + "{{username}}"
+          
+        })
+      }
+   }
+  </script>
   {%endblock%}

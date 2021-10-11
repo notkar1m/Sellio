@@ -47,6 +47,8 @@ def sign_up():
         user_data[name]['phone'] = phone
         user_data[name]["listings"] = []
         user_data[name]["favs"] = []
+        # user_data[name]["pfp"] = "https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar"
+        
 
         dumpJson()
 
@@ -297,6 +299,20 @@ def removeListing(id):
             user_data[user]["favs"].remove(id)
     dumpJson()
     return jsonify({"res":"success"})
+
+
+
+@app.route('/change-pfp', methods=['POST'])
+def changePfp():
+    username = request.cookies.get('name')
+    pw = request.cookies.get('pw')
+    if hasher(pw) == user_data[username]["pw"]:
+        newPfp = request.files["image"]
+        newPfp.save("static/pfps/" +username + os.path.splitext(newPfp.filename)[1])
+        # user_data[username]["pfp"] = "/static/pfp/" + username + os.path.splitext(newPfp.filename)[1]
+        return "success"
+    else:
+        return "wrong password"
 
 @app.route('/flash=<flashMessage>_url=<url>')
 def customFlash(flashMessage, url):
