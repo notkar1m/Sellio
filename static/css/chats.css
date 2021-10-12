@@ -1,0 +1,184 @@
+h2{
+	font-size: 79px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-top: 14px;
+    text-align: center;
+}
+
+
+#container {
+	min-height: 540px;
+    max-height: 500px;
+    height: fit-content;
+    width: 85%;
+    max-width: 1000px;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 23px;
+    /* box-shadow: 0 0 17px 0px #000000a1; */
+    box-shadow: 0 10px 20px #2d3142, 0 0 0 16px #bbe1fa;
+    background: linear-gradient( 
+	90deg, rgb(45 49 66) 1%, rgb(53 59 81) 100%, rgb(45 49 66) 100% );
+
+
+}
+
+
+#contact-list {
+    width: 40%;
+    background: #525b77;
+    overflow-x: clip;
+    overflow-y: scroll;
+    border-radius: 20px;
+    min-height: 539px;
+    height: fit-content;
+    max-height: 500px;
+}
+
+.contact {
+    background: #373c53;
+    height: 93px;
+    cursor: pointer;
+    transition: 0.2s;
+    color: white;
+    border-bottom: 1px solid white;
+    /* box-shadow: 0 0 20px #373c53; */
+}
+
+.contact:hover {
+	opacity: 0.8;
+}
+.contact img {
+    width: 54px;
+    height: 54px;
+    border-radius: 32px;
+    object-fit: cover;
+    position: relative;
+    top: 19px;
+    left: 19px;
+}
+
+.contact h3 {
+	position: relative;
+    top: -34px;
+    left: 100px;
+    font-size: 27px;
+}
+
+h4 {
+	    font-size: 29px;
+    margin-top: 200px;
+    color: white;
+}
+
+
+#messages-container {
+	width: 59.9%;
+    background: #33394e;
+    /* background: red; */
+    overflow-x: clip;
+    overflow-y: scroll;
+    border-radius: 20px;
+    /* min-height: 539px; */
+    height: 489px;
+    /* max-height: 500px; */
+    position: relative;
+    top: -538px;
+    left: 40%;
+    /* overflow-y: hidden; */
+}
+#messages-container::-webkit-scrollbar{
+	width:0;
+	background:transparent;
+}
+#messages-container::-webkit-scrollbar-thumb{
+	background: grey;
+}
+#messages-container h4{
+	    margin: auto;
+    width: fit-content;
+    margin-top: 40%;
+}
+
+
+#send-message-container {
+	    width: 60%;
+    height: 10%;
+    background: #33394e;
+    position: absolute;
+    top: 90%;
+    left: 40%;
+    border-radius: 20px;
+}
+
+#send-message-container input {
+    height: 20px;
+    position: relative;
+    top: 36%;
+    left: 46%;
+    transform: translate(-50%, -50%);
+    width: 410px;
+    font-size: 20px;
+}
+
+#send-message-container i{
+    position: relative;
+    right: -90px;
+    font-size: 24px;
+    top: 2px;
+    background: #ef8354;
+    padding: 7px;
+    padding-right: 13px;
+    border-radius: 25%;
+    color: white;
+    box-shadow: 0 0 12px #00000054;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+
+#send-message-container i:hover{
+    opacity: 0.8;
+}
+
+
+.message-other {
+background: #858585;
+    width: fit-content;
+    margin-top: 30px;
+    font-size: 20px;
+    padding: 5px;
+    padding-left: 15px;
+    margin-right: 611px;
+    padding-right: 15px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    color: white;
+    float: left;
+    margin-bottom: 10px;
+    margin-left: 14px;
+}
+.message-me {
+background: #7586c2;
+    width: fit-content;
+    margin-top: 20px;
+    font-size: 20px;
+    margin-bottom: 10px;
+    padding: 5px;
+    padding-left: 15px;
+    margin-left: 944px;
+    padding-right: 15px;
+    /* border-bottom-right-radius: 10px; */
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: white;
+    float: right;
+    margin-right: 14px;
+}
+
+

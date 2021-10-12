@@ -47,6 +47,16 @@ def sign_up():
         user_data[name]['phone'] = phone
         user_data[name]["listings"] = []
         user_data[name]["favs"] = []
+        user_data["name"]["chats"] = {}
+        '''
+        chats = 
+            {
+                "user1": [["user1", "lol"], ["user1", "haha"], ["karim", "bruh"]],
+                "tester" : [["tester", "hello"], ["karim", "whats up"]]
+            }
+        
+        
+        '''
         # user_data[name]["pfp"] = "https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar"
         
 
@@ -313,6 +323,72 @@ def changePfp():
         return "success"
     else:
         return "wrong password"
+
+
+
+@app.route('/chats')
+def chats():
+    username = request.cookies["name"]
+    pw = request.cookies["pw"]
+
+    if  username and  pw:
+        if hasher(pw) == user_data[username]["pw"]:
+            print(type(user_data[username]["chats"]))
+            return render_template("chats.html", chats=user_data[username]["chats"], logged=True, username=username, pw=pw, r=random.randint(0, 10000))
+        flash("Wrong password", category="error")
+    else:
+        flash("Please login first", category="error")
+
+    return redirect("/")
+
+
+
+@app.route('/add-user-to-chat_user=<targetName>')
+def addUserToChat(targetName):
+    username = request.cookies.get('name')
+    pw = request.cookies.get('pw')
+
+    if hasher(pw) == user_data[username]["pw"]:
+        if targetName in user_data[username]["chats"].keys():
+            return redirect("/chats#" + targetName)
+        user_data[username]["chats"][targetName] = []
+        user_data[targetName]["chats"][username] = []
+        dumpJson()
+        return redirect("/chats#" + targetName)
+
+    else:
+        flash("wrong password", category="error")
+        return redirect("/")    
+
+
+
+@app.route('/send-message_user=<targetName>', methods=['POST'])
+def sendMessage(targetName):
+    username = request.cookies.get('name')
+    pw = request.cookies.get('pw')
+    message = request.form.get('message')
+
+    if hasher(pw) == user_data[username]["pw"]:
+        user_data[username]["chats"][targetName].append([username, message])
+        user_data[targetName]["chats"][username].append([username, message])
+        dumpJson()
+        return "sent"
+    else:
+        return "wrong password"
+
+
+@app.route('/get-my-messages')
+def getMyMessages():
+    username = request.cookies.get('name')
+    pw = request.cookies.get('pw')
+    
+    if hasher(pw) == user_data[username]['pw']:
+        return jsonify(user_data[username]["chats"])
+    else:
+        return "wrong password"
+
+
+
 
 @app.route('/flash=<flashMessage>_url=<url>')
 def customFlash(flashMessage, url):
