@@ -145,19 +145,19 @@ body {
 
 #component-list{
 	display: grid;
-	width: 50%;
-	margin: auto;
-	margin-top: 100px;
-	grid-template-columns: auto auto;
-	gap: 30px;
-	
+    width: 50%;
+    margin: auto;
+    margin-top: 100px;
+    grid-template-columns: auto auto;
+    gap: 30px;
+
 
 }
 
 .component {
 	background-color: white;
 	width: 100%;
-	min-width: 334px;
+	min-width: 203px;
 	height: 20px;
 	padding-top: 20px;
 	padding-bottom: 20px;
@@ -282,7 +282,8 @@ body {
 
 
 #search-res {
-    width: 100vw;
+    /* width: 100vw; */
+    width: 90vw;
     height: 77vh;
     position: absolute;
     top: 238px;
@@ -392,4 +393,84 @@ font-size: 24px;
     margin-left: -220px;
     margin-right: 50px;
     cursor: pointer;
+}
+
+
+@media  only screen and (max-width: 1200px) {
+	#component-list {
+		grid-template-columns: auto;
+	}
+}
+
+
+@media  only screen and (max-width: 570px) {
+	.component{
+		font-size: 20px
+	}
+}
+@media  only screen and (max-width: 570px) {
+	.component{
+		font-size: 14px
+	}
+}
+
+@media  only screen and (max-width: 590px) {
+	.search-bar{
+		width: 80%;
+	}
+}
+@media  only screen and (max-width: 1000px) {
+	.navbar *:not(.fa-bars) {
+		display: none;
+	}
+
+	.navbar i{
+		display: block !important;
+	}
+}
+
+
+.navbar .fa-bars{
+font-size: 38px;
+    color: white;
+    position: relative;
+    right: -42%;
+}
+
+#mobile-nav {
+	display: none;
+    width: 40%;
+    height: 80%;
+    background: #2d3142;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 90%;
+    border-radius: 21px;
+    transition: 0s !important;
+
+}
+
+
+#mobile-nav .navbar-links {
+	position: relative;
+    left: 37%;
+    top: 10%;
+    font-size: 24px;
+}
+
+
+#mobile-nav .new-listing-btn {
+	    position: relative;
+    top: 80px;
+    margin: auto;
+    left: 8px;
+}
+
+#mobile-nav #pfp {
+	position: relative;
+	top: 120px;
+    left: 48%;
 }
