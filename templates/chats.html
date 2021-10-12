@@ -13,7 +13,10 @@
 {%block title%}Sellio - Chats {%endblock%}
 
 {%block navbar%}
+
+<img src="/static/logo.png" onclick="window.location.pathname = '/'" id="logo">
  <a href="/" class="navbar-links">Home</a>
+       <!-- <img src="/static/logo.png" id="logo"> -->
       <a href="/chats" class="navbar-links">Chats</a>
       <a href="/favorites" class="navbar-links">Favorites</a>
       <div class="new-listing-btn" onclick="window.location.href = '/new-listing'"><i class="fas fa-plus-circle"></i><span>New Listing</span></div>

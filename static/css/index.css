@@ -386,3 +386,10 @@ font-size: 24px;
 	from { transform: scale(0.4);opacity: 0.4}
 	to { transform: scale(1); opacity: 1; }
 }
+
+#logo {
+	    width: 85px;
+    margin-left: -220px;
+    margin-right: 50px;
+    cursor: pointer;
+}

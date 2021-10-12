@@ -10,10 +10,14 @@
 
   {%block navbar%} 
     {%if not logged%}
+           <!-- <img src="/static/logo.png" id="logo"> -->
+      <img src="/static/logo.png" onclick="window.location.pathname = '/'" id="logo">
           <a href="/" class="navbar-links">Home</a>
           <a onclick="ShowLogin()"class="navbar-links">Login</a>
           <div class="new-listing-btn" onclick="ShowAuth()"><i class="fas fa-user-plus"></i><span>Sign up</span></div>
           {%else%}
+                 <!-- <img src="/static/logo.png" id="logo"> -->
+      <img src="/static/logo.png" onclick="window.location.pathname = '/'" id="logo">
            <a href="/" class="navbar-links">Home</a>
       <a href="/chats" class="navbar-links">Chats</a>
       <a href="/favorites" class="navbar-links">Favorites</a>
