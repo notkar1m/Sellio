@@ -412,6 +412,10 @@ font-size: 24px;
 	.component{
 		font-size: 14px
 	}
+
+	.component-selection p{
+		font-size: 15px;
+	}
 }
 
 @media  only screen and (max-width: 590px) {
@@ -473,4 +477,24 @@ font-size: 38px;
 	position: relative;
 	top: 120px;
     left: 48%;
+}
+
+
+@media only screen and (max-width:1600px){
+	#search-res {
+		grid-template-columns: auto auto auto;
+		gap: 20px;
+	}
+}
+@media only screen and (max-width:1400px){
+	#search-res {
+		grid-template-columns: auto auto ;
+		gap: 20px;
+	}
+}
+@media only screen and (max-width:800px){
+	#search-res {
+		grid-template-columns: auto;
+		gap: 20px;
+	}
 }

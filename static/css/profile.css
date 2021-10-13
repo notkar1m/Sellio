@@ -151,8 +151,9 @@ font-size: 45px;
 }
 .fa-camera {
     position: absolute;
-    left: 34.3%;
-    top: 16.2%;
+    left: 36.5%;
+    top: 16.4%;
+    
     font-size: 33px;
     color: #5c5c5c;
     cursor: pointer;
@@ -166,3 +167,36 @@ font-size: 45px;
     position: absolute;
     left: 0;
 } */
+
+
+@media only screen and (max-width: 1150px){
+    #target-name {
+        left: 50%;
+    }
+    .fa-phone-alt {
+        left: 50.5%;
+    }
+
+    #phone {
+        left: 54.4%;
+    }
+}
+@media only screen and (max-width: 576px){
+    #target-pfp {
+        left: 12%;
+    }
+    #change-pfp-cam {
+        left: 12%;
+    }
+    #target-name {
+        left: 47%;
+    }
+    .fa-phone-alt {
+        left: 47%;
+    }
+
+    #phone {
+        left: 52.4%;
+    }
+}
+

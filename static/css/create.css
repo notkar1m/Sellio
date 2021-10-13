@@ -251,3 +251,35 @@ left: 33%;
     outline: none;
 }
 
+
+
+@media only screen and (max-width:1260px){
+    #title-container h3 {
+        left: -200px;
+    }
+    #images-container h3 {
+            left: -200px;
+    }
+}
+
+@media only screen and (max-width:830px){
+        #images-container h3 {
+            left: -120px;
+    }
+
+    #category {
+        margin-left: 120px;
+    }
+
+    #desc-container h3 {
+            left: -181px;
+    }
+
+    
+}
+
+@media only screen and (max-width:739px){
+    #images-container h3 {
+        display: none;
+    }
+}

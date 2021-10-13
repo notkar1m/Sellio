@@ -66,9 +66,7 @@
 
     {%endif%}
 
-      </div>   {%endblock%}
-
-{%block content%}
+      </div>   
       <div id="listing-container">
 
             <div id="title">{{listing["title"]}} 	
@@ -104,7 +102,9 @@
             <h3 id="category">{{listing["category"]}}</h3>
       
       
-            <div id="message-btn"><i class="fas fa-comment-dots"></i> Message</div>
+            {%if listing["owner"] != username%}
+            <div id="message-btn" onclick="window.location.pathname = '/add-user-to-chat_user={{listing["owner"]}}'"><i class="fas fa-comment-dots"></i> Message</div>
+            {%endif%}
       </div>
       
 {%endblock%}

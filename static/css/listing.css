@@ -180,3 +180,36 @@ h2 {
 .fa-heart, .fa-trash-alt {
     cursor: pointer;
 }
+
+
+@media only screen and (max-width: 1070px) {
+    #user-div {
+            right: -172px;
+        top: 190px;
+    }
+    h2 {
+            top: 1028px;
+    left: 172px;
+    width: fit-content;
+    }
+
+
+    #message-btn {
+        left: 523px;
+    top: 890px;
+    width: 170px;
+        font-size: 28px;
+    }
+}
+
+/* @media only screen and (max-width: 600px) {
+    #item-imgs img {
+        width: 459px;
+    }
+    .fa-chevron-circle-right{
+        left: 449px;
+    }
+    #item-img {
+        width: 449px;
+    }
+} */
