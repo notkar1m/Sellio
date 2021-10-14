@@ -1,0 +1,28 @@
+{
+    "9Gud7nUK6wX8g4J9kYcoJ9": {
+        "title": "ram",
+        "description": "sdfdf",
+        "condition": "used",
+        "price": "100",
+        "id": "9Gud7nUK6wX8g4J9kYcoJ9",
+        "imageType": [
+            "jpg"
+        ],
+        "owner": "karim",
+        "category": "Memory",
+        "date": "2021/10/13/10:18AM"
+    },
+    "4NcvqUkohATFnouwmVvkuj": {
+        "title": "lambo",
+        "description": "lambo",
+        "condition": "new",
+        "price": "3000000",
+        "id": "4NcvqUkohATFnouwmVvkuj",
+        "imageType": [
+            "jpeg"
+        ],
+        "owner": "tester",
+        "category": "GPU",
+        "date": "2021/10/14/1:42PM"
+    }
+}
