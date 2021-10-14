@@ -5,6 +5,8 @@
 <link rel="stylesheet" href="/static/css/listing.css">
 <link rel="stylesheet" href="/static/css/index.css">
 <title>Sellio - Listing</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+
 {%endblock%}
 
 {%block navbar%} 
@@ -73,7 +75,9 @@
                   {%if listing["owner"] == username%}
                   <i style="font-size:34px" class="far fa-trash-alt" onclick="DeleteListing(`{{listing['id']}}`)"></i>
                   {%else%}
+                  {%if logged%}
                   <i style="font-size:34px" class="far fa-heart" onclick="Fav(this, event)"></i>
+                  {%endif%}
                   {%endif%}
             </div>
 
@@ -102,7 +106,7 @@
             <h3 id="category">{{listing["category"]}}</h3>
       
       
-            {%if listing["owner"] != username%}
+            {%if listing["owner"] != username and logged%}
             <div id="message-btn" onclick="window.location.pathname = '/add-user-to-chat_user={{listing["owner"]}}'"><i class="fas fa-comment-dots"></i> Message</div>
             {%endif%}
       </div>

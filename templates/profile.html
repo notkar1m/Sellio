@@ -80,7 +80,7 @@
                        <img  id="target-pfp" src="/static/pfps/{{targetName}}.jpg?r={{r}}" onerror="if (this.src != 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar') this.src = 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar';">
   {%endif%}
   <h3 id="target-name">{{targetName}}</h3>            
-  {%if targetName != username%}
+  {%if targetName != username and logged%}
    <div id="message-btn" onclick="window.location.href = '/add-user-to-chat_user={{targetName}}'"><i class="fas fa-comment-dots"></i> Message</div>
    {%endif%}
 	<i class="fas fa-phone-alt"></i> <span id="phone">01234567898</span>

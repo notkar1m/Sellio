@@ -44,7 +44,7 @@ body {
 
 
 #signup-login-container{
-	z-index: 10000;
+	z-index: 1000000000000000000;
 	position: absolute;
 	width: 300px;
 	min-height: 200px;

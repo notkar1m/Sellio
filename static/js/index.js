@@ -48,17 +48,31 @@ function Search(val) {
 			}
 			else {
 
+				if(logged){
 
-				searchRes.append(`
-				
-				 <div class="item-listing" onclick="window.location.href='/listing/${listing.id}'">
-		<img src="/static/listing_images/${listing["id"]}/0.${listing["imageType"][0]}">
-		<h3>${listing["title"]}</h3>
-		<br>
-		<p>$${parseInt(listing["price"]).toLocaleString()}</p>
-		<i class="far fa-heart" onclick="Fav(this, event)"></i>
-	      </div>
-				`)
+					searchRes.append(`
+					
+					 <div class="item-listing" onclick="window.location.href='/listing/${listing.id}'">
+			<img src="/static/listing_images/${listing["id"]}/0.${listing["imageType"][0]}">
+			<h3>${listing["title"]}</h3>
+			<br>
+			<p>$${parseInt(listing["price"]).toLocaleString()}</p>
+			<i class="far fa-heart" onclick="Fav(this, event)"></i>
+		      </div>
+					`)
+				}
+				else{
+
+					searchRes.append(`
+					
+					 <div class="item-listing" onclick="window.location.href='/listing/${listing.id}'">
+			<img src="/static/listing_images/${listing["id"]}/0.${listing["imageType"][0]}">
+			<h3>${listing["title"]}</h3>
+			<br>
+			<p>$${parseInt(listing["price"]).toLocaleString()}</p>
+		      </div>
+					`)
+				}
 			}
 			
 			fetch("/get-my-favs").then((response) => {
@@ -142,17 +156,34 @@ function chooseCategory(category){
 				
 			}
 			else {
-				$("#search-res").append(`
-	
 				
-				 <div class="item-listing" onclick="window.location.href='/listing/${listing.id}'">
-		<img src="/static/listing_images/${listing["id"]}/0.${listing["imageType"][0]}">
-		<h3>${listing["title"]}</h3>
-		<br>
-		<p>$${parseInt(listing["price"]).toLocaleString()}</p>
-		<i class="far fa-heart" onclick="Fav(this, event)"></i>
-	      </div>
-				`)
+				if(logged){
+
+					$("#search-res").append(`
+		
+					
+					 <div class="item-listing" onclick="window.location.href='/listing/${listing.id}'">
+			<img src="/static/listing_images/${listing["id"]}/0.${listing["imageType"][0]}">
+			<h3>${listing["title"]}</h3>
+			<br>
+			<p>$${parseInt(listing["price"]).toLocaleString()}</p>
+			<i class="far fa-heart" onclick="Fav(this, event)"></i>
+		      </div>
+					`)
+				}
+				else{
+					$("#search-res").append(`
+		
+					
+					 <div class="item-listing" onclick="window.location.href='/listing/${listing.id}'">
+			<img src="/static/listing_images/${listing["id"]}/0.${listing["imageType"][0]}">
+			<h3>${listing["title"]}</h3>
+			<br>
+			<p>$${parseInt(listing["price"]).toLocaleString()}</p>
+		      </div>
+					`)
+
+				}
 			}
 		});
 

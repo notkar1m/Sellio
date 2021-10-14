@@ -3,6 +3,9 @@
 
   {%block head%}    
   <link rel="stylesheet" href="/static/css/index.css" /> 
+  <script>
+    var logged = "{{logged}}" == "True" || "{{logged}}" == "true"
+  </script>
   <script src="static/js/index.js"></script>
   {%endblock%}
   {%block title%} Home {%endblock%}

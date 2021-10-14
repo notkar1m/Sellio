@@ -34,7 +34,10 @@ def sign_up():
     name = request.form['name']
     pw = request.form['pw']
     phone = request.form['pn']
-
+    for user in user_data:
+        if user["phone"] == phone:
+            flash("Phone number already in use.", category="error")
+            return redirect('/')
     if name in user_data.keys():
         flash("Username taken", category="error")
         return redirect("/")
@@ -207,12 +210,14 @@ def lising(listingId):
 
 @app.route('/user/<targetName>')
 def user(targetName):
-    if targetName not in user_data.keys() or not request.cookies.get("name") or not request.cookies.get("pw") or user_data[request.cookies.get("name")]["pw"] != hasher(request.cookies.get("pw")):
+    if targetName not in user_data.keys():
         flash("User not found", category="error")
         return redirect('/')
     phone = user_data[targetName]["phone"]
     targetListings = user_data[targetName]["listings"]
     listingsRes = [listings[l] for l in targetListings]
+    if not request.cookies.get("name") or not request.cookies.get("pw"):
+        return render_template("profile.html", phone=phone, listings=listingsRes,targetName=targetName,logged=False, r=random.randint(0, 10000))
 
     return render_template("profile.html", phone=phone, listings=listingsRes,targetName=targetName,logged=True, username=request.cookies.get("name"), pw=request.cookies.get("pw"), r=random.randint(0, 10000))
 

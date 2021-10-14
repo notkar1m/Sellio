@@ -25,7 +25,7 @@ $(() => {
                 
                 //Only pics
                 if(!file.type.match('image'))
-                  continue;
+                  continue
                 
                 var picReader = new FileReader();
                 

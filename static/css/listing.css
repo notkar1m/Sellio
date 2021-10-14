@@ -1,5 +1,8 @@
 #listing-container{ 
-	zoom: 90%;
+	zoom: 85%;
+}
+body {
+    zoom: 100%;
 }
 #title {
     font-size: 43px;
@@ -188,7 +191,7 @@ h2 {
         top: 190px;
     }
     h2 {
-            top: 1028px;
+            top: 1098px;
     left: 172px;
     width: fit-content;
     }
@@ -196,7 +199,7 @@ h2 {
 
     #message-btn {
         left: 523px;
-    top: 890px;
+    top: 1090px;
     width: 170px;
         font-size: 28px;
     }
@@ -213,3 +216,10 @@ h2 {
         width: 449px;
     }
 } */
+
+@media only screen and (max-width: 706px) {
+#listing-container{ 
+	zoom: 45%;
+}
+
+}
