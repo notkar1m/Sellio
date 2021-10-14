@@ -180,6 +180,10 @@ font-size: 45px;
     #phone {
         left: 54.4%;
     }
+
+    #message-btn {
+        display: none;
+    }
 }
 @media only screen and (max-width: 576px){
     #target-pfp {

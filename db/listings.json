@@ -24,5 +24,18 @@
         "owner": "tester",
         "category": "GPU",
         "date": "2021/10/14/1:42PM"
+    },
+    "V3zLwJhgCQqDbFXVTvpiKn": {
+        "title": "elon musk",
+        "description": "description",
+        "condition": "used",
+        "price": "1000000000",
+        "id": "V3zLwJhgCQqDbFXVTvpiKn",
+        "imageType": [
+            "jpg"
+        ],
+        "owner": "karim",
+        "category": "CPU",
+        "date": "2021/10/14/5:17PM"
     }
 }

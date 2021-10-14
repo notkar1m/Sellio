@@ -105,6 +105,15 @@ def logout():
 
 
 # region index
+
+def getLatestListings():
+    
+    if len(list(listings.keys())) >= 15:
+        res = [listings[list(listings.keys())[-i]] for i in range(15)]
+    else:
+        res = [listings[list(listings.keys())[-i]] for i in range(len(listings.keys()))]
+
+    return res
 @app.route('/')
 def index():
     global user_data
@@ -113,13 +122,13 @@ def index():
     if cookie_name and cookie_pw:
         try:
             if user_data[cookie_name]['pw'] == hasher(cookie_pw):
-                return render_template("index.html", logged=True, username=cookie_name, pw=cookie_pw, r=random.randint(0, 10000))
+                return render_template("index.html", logged=True, latestListings=getLatestListings(),username=cookie_name, pw=cookie_pw, r=random.randint(0, 10000))
             else:
-                return render_template("index.html", logged=False, r=random.randint(0, 10000))
+                return render_template("index.html", latestListings=getLatestListings(), logged=False, r=random.randint(0, 10000))
         except KeyError:
-            return render_template("index.html", logged=False, r=random.randint(0, 10000))
+            return render_template("index.html",  latestListings=getLatestListings() ,logged=False, r=random.randint(0, 10000))
     else:
-        return render_template("index.html", logged=False, r=random.randint(0, 10000))
+        return render_template("index.html", latestListings=getLatestListings(), logged=False, r=random.randint(0, 10000))
 
 
 @app.route('/new-listing')
@@ -150,6 +159,10 @@ def add_listing():
     os.mkdir(f"./static/listing_images/{listingId}")
     category = request.form.get("category")
     imageTypes = []
+
+    if price.isalpha():
+        
+        return "error uploading"
     for i in range(len(images)):
         image = images[f"image{i+1}"]
         imageExtension = os.path.splitext(image.filename)[1]
@@ -307,6 +320,8 @@ def removeListing(id):
     if id not in listings.keys():
         return jsonify({"res":"listing not found"})
 
+    for i in range(len(listings[id]["imageType"])):
+        os.remove("/listing_images/" + id + listings[id]["imageType"][i])
     user_data[username]["listings"].remove(id)
     del listings[id]
     for user in user_data:
@@ -391,6 +406,13 @@ def getMyMessages():
         return jsonify(user_data[username]["chats"])
     else:
         return "wrong password"
+
+
+
+
+
+
+
 
 
 

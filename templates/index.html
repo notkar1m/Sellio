@@ -135,4 +135,60 @@
      
 
     </div>
+
+    <div id="latest-listings-container">
+      <hr id="latest-listings-hr">
+      <h3 id="latest-listings-heading">Latest Listings</h3>
+
+      <br>
+      <br>
+      <br>
+
+      <div id="latest-listings-res">
+        {%for listing in latestListings%}
+          {%if listing["owner"] == username %}
+
+				 <div class="item-listing" onclick="window.location.href='/listing/{{listing["id"]}}'">
+            <img src="/static/listing_images/{{listing["id"]}}/0.{{listing["imageType"][0]}}">
+            <h3>{{listing["title"]}}</h3>
+            <br>
+            <p class="latest-listings-listing-price">{{listing["price"]}}</p>
+            <i class="far fa-trash-alt" onclick="DeleteListing('{{listing["id"]}}')"></i>
+	      </div>
+				
+          {%else%}
+            {%if logged%}
+            
+					 <div class="item-listing" onclick="window.location.href='/listing/{{listing["id"]}}'">
+              <img src="/static/listing_images/{{listing["id"]}}/0.{{listing["imageType"][0]}}">
+              <h3>{{listing["title"]}}</h3>
+              <br>
+              <p class="latest-listings-listing-price">{{listing["price"]}}</p>
+              <i class="far fa-heart" onclick="Fav(this, event)"></i>
+		      </div>
+            {%else%}
+              			 <div class="item-listing" onclick="window.location.href='/listing/{{listing["id"]}}'">
+              <img src="/static/listing_images/{{listing["id"]}}/0.{{listing["imageType"][0]}}">
+              <h3>{{listing["title"]}}</h3>
+              <br>
+              <p class="latest-listings-listing-price">{{listing["price"]}}</p>
+		      </div>
+            {%endif%}
+          {%endif%}
+
+        {%endfor%}
+      </div>
+
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+
+
+
+
+    
 {%endblock%}

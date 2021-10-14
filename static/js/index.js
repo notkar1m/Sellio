@@ -1,6 +1,27 @@
 var accName;
 $(() => {
 	 accName = $("#user-name").text().split(" ")[2]
+
+
+	 for (var i = 0; i < $("#latest-listings-res div").length;i++)	{
+			const listing = $("#latest-listings-res div")[i]
+			fetch("/get-my-favs").then((response) => {
+					       return response.json()
+				       }).then((response) => {
+					       response = response["res"]
+					       if(response.includes(listing.getElementsByTagName("img")[0].src.split("/")[5])){
+						       Fav(listing.getElementsByTagName("i")[0], undefined, true)
+					       }
+				       })
+
+	 }
+
+
+	 for (let i = 0; i < $(".latest-listings-listing-price").length; i++) {
+		 const element = $(".latest-listings-listing-price")[i];
+		 $(element).text("$" + parseInt($(element).text()).toLocaleString())
+		 
+	 }
 })
 function Search(val) {
 	$("#search-res h2").remove()
