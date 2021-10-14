@@ -82,6 +82,14 @@
 
     <div class="search-bar"><input oninput="Search(this.value)" autocomplete="on" placeholder="Search Sellio..."type="text"/><div id="search-btn"><i class="fas fa-search"></i></div></div>
 
+    {%if not logged%}
+    <div id="welcome-div">
+      <h3>Welcome to Sellio, the place where computer enthusiasts buy and sell PC parts.</h3>
+      <button onclick="ShowAuth()">Sign Up</button>
+      <button onclick="ShowLogin()">Login</button>
+      <button  onclick="$('#welcome-div').fadeOut(200)">Close</button>
+    </div>
+    {%endif%}
     <div class="component-selection" style="display:block">
 	<p>What type of component are you looking for ?</p>
 
