@@ -31,7 +31,10 @@ $(() => {
 })
 
 
-	
+function sanitizeString(str){
+    str = str.replace(/[^a-z0-9áéíóúñü \.,_-]/gim,"");
+    return str.trim();
+}
 	
 function loadMessages(selectedName) {
 	$("#messages-container").html("")
@@ -51,10 +54,10 @@ function loadMessages(selectedName) {
 	for (let i = 0; i < chats[selectedName].length; i++) {
 		const element = chats[selectedName][i];
 		if(element[0] == accName){
-			messagesContainer.append('<div class="message-me"><p>' + element[1] + '</p></div>')
+			messagesContainer.append('<div class="message-me"><p>' + sanitizeString(element[1]) + '</p></div>')
 		}
 		else{
-			messagesContainer.append('<div class="message-other"><p>' + element[1] + '</p></div>')
+			messagesContainer.append('<div class="message-other"><p>' + sanitizeString(element[1]) + '</p></div>')
 		}
 		
 	}
