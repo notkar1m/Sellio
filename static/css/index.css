@@ -326,6 +326,12 @@ body {
 	overflow: clip;
 	cursor: pointer;
 }
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
+  .item-listing {
+    clip: auto;
+    -webkit-mask-image: -webkit-linear-gradient(top, #ffffff 0%,#ffffff 100%)
+  }
+}
 .item-listing img {
 	height: 176px;
 	border-radius: 20px;

@@ -430,6 +430,11 @@ def customFlash(flashMessage, url):
 def page_not_found(e):
     return render_template('404.html'), 404
 
+
+
+@app.route('/test', methods=['GET', 'POST'])
+def test():
+     return Response('<Response><Play>http://demo.twilio.com/docs/classic.mp3</Play></Response>', mimetype='text/xml')
     
 
 
