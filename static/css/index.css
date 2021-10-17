@@ -180,7 +180,7 @@ body {
 .component:hover{
 	/* background-color: rgb(219, 219, 219); */
 
-	background-color: rgb(236, 236, 236);
+	/* background-color: rgb(236, 236, 236); */
 
 	transform: scale(1.1)
 }

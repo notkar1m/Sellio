@@ -180,8 +180,20 @@ h2 {
     font-weight: 500;
 }
 
-.fa-heart, .fa-trash-alt {
+.fa-heart, .fa-trash-alt{
     cursor: pointer;
+}
+.fa-share-square {
+    color: #ef8354;
+    position: relative;
+    top: 0px;
+    right: -10px;
+    transition: 0.2s;
+    font-size: 36px;
+    cursor: pointer;
+}
+.fa-share-square:hover{
+    opacity: 0.8
 }
 
 

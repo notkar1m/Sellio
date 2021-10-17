@@ -151,12 +151,12 @@ font-size: 45px;
 }
 .fa-camera {
     position: absolute;
-    left: 36.5%;
-    top: 16.4%;
-    
-    font-size: 33px;
+    left: 32%;
+    top: 12.4%;
+    font-size: 100px;
     color: #5c5c5c;
     cursor: pointer;
+    transform: scale(0.35);
 }
 .fa-camera:hover {
     opacity: 0.5;

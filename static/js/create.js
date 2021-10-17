@@ -69,21 +69,21 @@ $(() => {
     function Publish(){
         let title = $("#title").val()
         let description = $("#description").val()
-        let price = $("#price").val()
+        let price = $("#price").val() == "" ? 0 : $("#price").val()
         let radioNew = $("#new-radio")
         let condition = radioNew.is(":checked") ? "new" : "used"
         let formData = new FormData();
         let category = $("#category").val()
-            function format(date) {
-        var hours = date.getHours();
-        var minutes = date.getMinutes();
-        var ampm = hours >= 12 ? 'PM' : 'AM';
-        hours = hours % 12;
-        hours = hours ? hours : 12; // the hour '0' should be '12'
-        minutes = minutes < 10 ? '0'+minutes : minutes;
-        var strTime = hours + ':' + minutes + ampm;
-        return strTime;
-    }
+        function format(date) {
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            minutes = minutes < 10 ? '0'+minutes : minutes;
+            var strTime = hours + ':' + minutes + ampm;
+            return strTime;
+        }
 
     time = format(new Date)
     d = new Date()
@@ -99,6 +99,16 @@ $(() => {
           });
             return
         }
+
+
+        if(parseInt(price) < 5 || parseInt(price) > 100000){
+             iziToast.error({
+              title: 'Error',
+              message: 'Min price is $5 and the max is $100,000'
+          });
+            return
+        }
+
         formData.append("title", title)
         formData.append("description", description)
         formData.append("price", price)

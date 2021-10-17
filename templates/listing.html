@@ -74,6 +74,8 @@
             <div id="title">{{listing["title"]}} 	
                   {%if listing["owner"] == username%}
                   <i style="font-size:34px" class="far fa-trash-alt" onclick="DeleteListing(`{{listing['id']}}`)"></i>
+                  <i class="fas fa-share-square" onclick="Share()"></i>
+
                   {%else%}
                   {%if logged%}
                   <i style="font-size:34px" class="far fa-heart" onclick="Fav(this, event)"></i>
