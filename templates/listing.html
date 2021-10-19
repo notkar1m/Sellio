@@ -4,6 +4,7 @@
 <script src="/static/js/listing.js"></script>
 <link rel="stylesheet" href="/static/css/listing.css">
 <link rel="stylesheet" href="/static/css/index.css">
+<script src="/static/js/index.js"></script>
 <title>Sellio - Listing</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 
@@ -27,8 +28,9 @@
                    <img  onclick="$('#user-opts').toggle()" id="pfp" src="/static/pfps/{{username}}.jpg?r={{r}}" onerror="if (this.src != 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar') this.src = 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar';">
       <div id="user-opts" style="display:none">
         <h3 id="user-name">Logged as {{username}}</h3>
-        <div class="options"><i class="fas fa-user-circle"></i> Profile</div>
-        <div class="options"><i class="fas fa-cog"></i> Settings</div>
+        <div class="options" onclick="window.location.href = '/user/{{username}}'"><i class="fas fa-user-circle"></i> Profile</div>
+        <!-- <div class="options"><i class="fas fa-cog"></i> Settings</div> -->
+                <div class="options"><i class="fas fa-info-circle"></i><span style="margin-left: 30px;"> About Sellio </span></div>
         <div class="options"  onclick="window.location.href = '/logout'"><i class="fas fa-sign-out-alt"></i> <span style="color: #FF6868;">Log out</span></div>
       </div>
           {%endif%}
@@ -39,10 +41,14 @@
       <div id="mobile-nav">
 {%if not logged%}
          <!-- <img src="/static/logo.png" id="logo"> -->
-    <img src="/static/logo.png" onclick="window.location.pathname = '/'" id="logo">
-        <a href="/" class="navbar-links">Home</a>
-        <a onclick="ShowLogin()"class="navbar-links">Login</a>
-        <div class="new-listing-btn" onclick="ShowAuth()"><i class="fas fa-user-plus"></i><span>Sign up</span></div>
+         <a href="/" class="navbar-links">Home</a>
+         <br>
+         <br>
+         <a onclick="ShowLogin()"class="navbar-links">Login</a>
+         <br>
+         <br>
+         <div class="new-listing-btn" onclick="ShowAuth()"><i class="fas fa-user-plus"></i><span>Sign up</span></div>
+         <img src="/static/logo.png" style="width: 85px;margin: 190px 0 0 0;cursor: pointer;" onclick="window.location.pathname = '/'" id="logo">
         {%else%}
               <!-- <img src="/static/logo.png" id="logo"> -->
     <!-- <img src="/static/logo.png" onclick="window.location.pathname = '/'" id="logo"> -->

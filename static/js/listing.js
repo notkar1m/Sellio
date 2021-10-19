@@ -129,7 +129,7 @@ function DeleteListing(id){
 function Share() {
 	$("#signup-login-container").html(`
 	<input style="width: 90%;
-    margin-left: 6px;font-size:15px" readonly value="${window.location.href}"/>
+    margin-left: 6px;font-size:15px" readonly value="Hey, check out this listing on Sellio: ${window.location.href}"/>
     <button onclick="$('#signup-login-container input')[0].select();document.execCommand('copy')"style="font-size: 30px;
     margin-top: 38px;
     padding: 30px;">Copy</button>

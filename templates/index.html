@@ -30,7 +30,8 @@
       <div id="user-opts" style="display:none">
         <h3 id="user-name">Logged as {{username}}</h3>
         <div class="options" onclick="window.location.href = '/user/{{username}}'"><i class="fas fa-user-circle"></i> Profile</div>
-        <div class="options"><i class="fas fa-cog"></i> Settings</div>
+        <!-- <div class="options"><i class="fas fa-cog"></i> Settings</div> -->
+                <div class="options"><i class="fas fa-info-circle"></i><span style="margin-left: 30px;"> About Sellio </span></div>
         <div class="options"  onclick="window.location.href = '/logout'"><i class="fas fa-sign-out-alt"></i> <span style="color: #FF6868;">Log out</span></div>
       </div>
 
@@ -44,10 +45,14 @@
       <div id="mobile-nav">
 {%if not logged%}
          <!-- <img src="/static/logo.png" id="logo"> -->
-    <img src="/static/logo.png" onclick="window.location.pathname = '/'" id="logo">
-        <a href="/" class="navbar-links">Home</a>
-        <a onclick="ShowLogin()"class="navbar-links">Login</a>
-        <div class="new-listing-btn" onclick="ShowAuth()"><i class="fas fa-user-plus"></i><span>Sign up</span></div>
+         <a href="/" class="navbar-links">Home</a>
+         <br>
+         <br>
+         <a onclick="ShowLogin()"class="navbar-links">Login</a>
+         <br>
+         <br>
+         <div class="new-listing-btn" onclick="ShowAuth()"><i class="fas fa-user-plus"></i><span>Sign up</span></div>
+         <img src="/static/logo.png" style="width: 85px;margin: 190px 0 0 0;cursor: pointer;" onclick="window.location.pathname = '/'" id="logo">
         {%else%}
               <!-- <img src="/static/logo.png" id="logo"> -->
     <!-- <img src="/static/logo.png" onclick="window.location.pathname = '/'" id="logo"> -->

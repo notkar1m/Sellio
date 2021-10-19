@@ -457,13 +457,12 @@ font-size: 38px;
     width: 90%;
     border-radius: 21px;
     transition: 0s !important;
+    text-align: center;
 
 }
 
 
 #mobile-nav .navbar-links {
-	position: relative;
-    left: 37%;
     top: 10%;
     font-size: 24px;
 }
@@ -479,7 +478,7 @@ font-size: 38px;
 #mobile-nav #pfp {
 	position: relative;
 	top: 120px;
-    left: 48%;
+	left: 0%;
 }
 
 

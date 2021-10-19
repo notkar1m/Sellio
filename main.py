@@ -348,8 +348,8 @@ def changePfp():
 
 @app.route('/chats')
 def chats():
-    username = request.cookies["name"]
-    pw = request.cookies["pw"]
+    username = request.cookies.get("name")
+    pw = request.cookies.get("pw")
 
     if  username and  pw:
         if hasher(pw) == user_data[username]["pw"]:
