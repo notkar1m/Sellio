@@ -1,3 +1,6 @@
+$(() => {
+	
+})
 function switchLoginAndSignup(){
 	$("#signup-login-container #login").toggle()
 	$("#signup-login-container #signup").toggle()

@@ -52,10 +52,11 @@
           <input name="name" type="text" placeholder="Choose  Username">
           <br>
           
-          <input type="tel" name="pn" placeholder="Enter your phone number">
+          <input type="tel" pattern="{1}[0-9]{11,14}"  name="pn" placeholder="Enter your phone number">
           <br>
           <input name="pw" type="password" placeholder="Choose a Password">
           <br>
+          <input id="ip-input" style="display:none"/>
           
           <button type="submit">Sign up</button>
           
