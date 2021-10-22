@@ -83,8 +83,8 @@
 
             <div id="title">{{listing["title"]}} 	
                   {%if listing["owner"] == username%}
-                  <i style="font-size:34px" class="far fa-trash-alt" onclick="DeleteListing(`{{listing['id']}}`)"></i>
-                  <i class="fas fa-share-square" onclick="Share()"></i>
+                  <i style="font-size:34px" class="far fa-trash-alt"  title="Delete listing"onclick="DeleteListing(`{{listing['id']}}`)"></i>
+                  <i class="fas fa-share-square" title="Share listing" onclick="Share()"></i>
 
                   {%else%}
                   {%if logged%}
@@ -93,7 +93,7 @@
                   {%endif%}
                   
                   {%if logged%}
-                  <i onclick="ShowReport()" class="far fa-flag"></i>
+                  <i onclick="ShowReport()" title="Report listing" class="far fa-flag"></i>
                   {%endif%}
             </div>
 
