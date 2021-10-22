@@ -1,10 +1,11 @@
 {
     "karim": {
         "pw": "202cb962ac59075b964b07152d234b70",
-        "phone": "01200153579",
+        "phone": "01200153579 (\ud83c\uddea\ud83c\uddec)",
         "listings": [
             "9Gud7nUK6wX8g4J9kYcoJ9",
-            "V3zLwJhgCQqDbFXVTvpiKn"
+            "V3zLwJhgCQqDbFXVTvpiKn",
+            "Axn3Rsw62ds6a7TottPVo4"
         ],
         "favs": [
             "4NcvqUkohATFnouwmVvkuj"
@@ -192,7 +193,7 @@
     },
     "tester": {
         "pw": "202cb962ac59075b964b07152d234b70",
-        "phone": "34343434",
+        "phone": "34343434 (\ud83c\uddea\ud83c\uddec)",
         "listings": [
             "4NcvqUkohATFnouwmVvkuj"
         ],
@@ -381,6 +382,20 @@
     "karims": {
         "pw": "7815696ecbf1c96e6894b779456d330e",
         "phone": "11111111 (\ud83c\uddea\ud83c\uddec)",
+        "listings": [],
+        "favs": [],
+        "chats": {}
+    },
+    "canadatest": {
+        "pw": "7815696ecbf1c96e6894b779456d330e",
+        "phone": "1213123123 (\ud83c\uddea\ud83c\uddec)",
+        "listings": [],
+        "favs": [],
+        "chats": {}
+    },
+    "sdfsdf": {
+        "pw": "33e78d60bc1f9dcc7291c891e6f069e4",
+        "phone": "23434334 (\ud83c\uddea\ud83c\uddec)",
         "listings": [],
         "favs": [],
         "chats": {}

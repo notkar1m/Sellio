@@ -1,7 +1,9 @@
 var images;
 var currImage;
 $(() => {
-	$("#price").html("$" +parseInt($("#price").html()).toLocaleString())
+	fetch("https://gist.githubusercontent.com/Fluidbyte/2973986/raw/5fda5e87189b066e11c1bf80bbfbecb556cf2cc1/Common-Currency.json").then(res => res.json()).then(res => {
+		$("#price").html( res[currencyCode]["symbol"] + " " + parseInt($("#price").html()).toLocaleString())
+	})
 	$(".listing-images:first").show()
 	$("#date").html(moment($("#date").html(),"YYYY/M/D/hh:mma").fromNow())
 	
@@ -142,4 +144,74 @@ function Share() {
 	ShowAuth()
 	$("#signup-login-container input")[0].select()
 	document.execCommand('copy');
+}
+
+
+
+function ShowReport(){
+		$("#signup-login-container").html(`
+
+		<center><h3>Report Listing</h3></center>
+		<br>
+	<input id="report-reason" style="width: 90%;
+    margin-left: 6px;font-size:15px" placeholder="Reason"/>
+
+    <br>
+    <br>
+    <textarea  id="report-more-info" style="width: 280px;font-size: 22px;font-family: 'Poppins', sans-serif;padding: 9px;border: none;border-radius: 13px;box-shadow: 0 0 15px -4px #00000047;
+    outline: none;resize:none;height:170px" placeholder="More information"></textarea>
+
+
+
+
+    <button onclick="SendReport()" style="font-size: 18px;
+    margin-top: 38px;">Send Report</button>
+
+
+
+    <p style="text-align: center;
+    text-decoration: none;
+    margin-top: 20px;
+    opacity: 1 !important;
+    cursor: initial;">Report a listing if you think it has something wrong and we'll review your report.</p>
+	`)
+	ShowAuth()
+}
+
+
+
+function SendReport(){
+	let reason = $("#report-reason").val();
+	let moreInfo = $("#report-more-info").val();
+
+	if(reason.length == 0 || moreInfo.length == 0){
+		iziToast.error({
+			title: "Error",
+			message: "Please fill out all the fields."
+		})
+		return
+	}
+	let formData = new FormData();
+	formData.append("reason", reason);
+	formData.append("moreInfo", moreInfo);
+	formData.append("listingId", listingId)
+
+	fetch("/send-report", {
+		method: "POST",
+		body: formData,
+	}).then((response) => response.text()).then((res) => {
+		closeAuth();
+		if (res == "success"){
+			 iziToast.success({
+				title: 'Success',
+				message: "Report sent successfully!",
+			});
+		}
+		else{
+		iziToast.error({
+			title: 'Error',
+			message: "Error sending report!",
+		});
+		}
+	})
 }

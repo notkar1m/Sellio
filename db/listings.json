@@ -4,6 +4,7 @@
         "description": "sdfdf",
         "condition": "used",
         "price": "100",
+        "currency": "EGP",
         "id": "9Gud7nUK6wX8g4J9kYcoJ9",
         "imageType": [
             "jpg"
@@ -17,6 +18,7 @@
         "description": "lambo",
         "condition": "new",
         "price": "3000000",
+        "currency": "EGP",
         "id": "4NcvqUkohATFnouwmVvkuj",
         "imageType": [
             "jpeg"
@@ -30,6 +32,7 @@
         "description": "description",
         "condition": "used",
         "price": "1000000",
+        "currency": "EGP",
         "id": "V3zLwJhgCQqDbFXVTvpiKn",
         "imageType": [
             "jpg"
@@ -37,5 +40,20 @@
         "owner": "karim",
         "category": "CPU",
         "date": "2021/10/14/5:17PM"
+    },
+    "Axn3Rsw62ds6a7TottPVo4": {
+        "title": "random",
+        "description": "random",
+        "condition": "new",
+        "price": "100",
+        "currency": "EGP",
+        "id": "Axn3Rsw62ds6a7TottPVo4",
+        "imageType": [
+            "jpg",
+            "jpg"
+        ],
+        "owner": "karim",
+        "category": "CPU",
+        "date": "2021/10/22/11:05PM"
     }
 }

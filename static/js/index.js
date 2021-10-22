@@ -18,8 +18,13 @@ $(() => {
 
 
 	 for (let i = 0; i < $(".latest-listings-listing-price").length; i++) {
-		 const element = $(".latest-listings-listing-price")[i];
-		 $(element).text("$" + parseInt($(element).text()).toLocaleString())
+		 	fetch("https://gist.githubusercontent.com/Fluidbyte/2973986/raw/5fda5e87189b066e11c1bf80bbfbecb556cf2cc1/Common-Currency.json").then(res => res.json()).then(res => {
+				 const element = $(".latest-listings-listing-price")[i];
+				 let currencyCode = $(element).text().split(" ")[0]
+				 let priceNum = $(element).text().split(" ")[1]
+				 $(element).text(res[currencyCode]["symbol"] + " " + parseInt(priceNum).toLocaleString())
+				 
+		})
 		 
 	 }
 })
@@ -56,43 +61,53 @@ function Search(val) {
 			const listing = res[i];
 			if(listing.owner == accName){
 
-				searchRes.append(`
-				
-				 <div class="item-listing" onclick="window.location.href='/listing/${listing.id}'">
-		<img src="/static/listing_images/${listing["id"]}/0.${listing["imageType"][0]}">
-		<h3>${listing["title"]}</h3>
-		<br>
-		<p>$${parseInt(listing["price"]).toLocaleString()}</p>
-		<i class="far fa-trash-alt" onclick="DeleteListing('${listing.id}')"></i>
-	      </div>
-				`)
+		fetch("https://gist.githubusercontent.com/Fluidbyte/2973986/raw/5fda5e87189b066e11c1bf80bbfbecb556cf2cc1/Common-Currency.json").then(res => res.json()).then(res => {
+
+			searchRes.append(`
+			
+			 <div class="item-listing" onclick="window.location.href='/listing/${listing.id}'">
+	<img src="/static/listing_images/${listing["id"]}/0.${listing["imageType"][0]}">
+	<h3>${listing["title"]}</h3>
+	<br>
+		<p>${res[listing.currency]["symbol"] + " " +parseInt(listing["price"]).toLocaleString()}</p>
+	<i class="far fa-trash-alt" onclick="DeleteListing('${listing.id}')"></i>
+      </div>
+			`)
+			})
+
 			}
 			else {
 
 				if(logged){
 
-					searchRes.append(`
-					
-					 <div class="item-listing" onclick="window.location.href='/listing/${listing.id}'">
-			<img src="/static/listing_images/${listing["id"]}/0.${listing["imageType"][0]}">
-			<h3>${listing["title"]}</h3>
-			<br>
-			<p>$${parseInt(listing["price"]).toLocaleString()}</p>
-			<i class="far fa-heart" onclick="Fav(this, event)"></i>
-		      </div>
-					`)
+		fetch("https://gist.githubusercontent.com/Fluidbyte/2973986/raw/5fda5e87189b066e11c1bf80bbfbecb556cf2cc1/Common-Currency.json").then(res => res.json()).then(res => {
+
+			searchRes.append(`
+			
+			 <div class="item-listing" onclick="window.location.href='/listing/${listing.id}'">
+	<img src="/static/listing_images/${listing["id"]}/0.${listing["imageType"][0]}">
+	<h3>${listing["title"]}</h3>
+	<br>
+			<p>${res[listing.currency]["symbol"] + " " +parseInt(listing["price"]).toLocaleString()}</p>
+	<i class="far fa-heart" onclick="Fav(this, event)"></i>
+      </div>
+			`)
+				})
+
 				}
 				else{
 
-					searchRes.append(`
-					
-					 <div class="item-listing" onclick="window.location.href='/listing/${listing.id}'">
-			<img src="/static/listing_images/${listing["id"]}/0.${listing["imageType"][0]}">
-			<h3>${listing["title"]}</h3>
-			<br>
-			<p>$${parseInt(listing["price"]).toLocaleString()}</p>
-		      </div>
-					`)
+		fetch("https://gist.githubusercontent.com/Fluidbyte/2973986/raw/5fda5e87189b066e11c1bf80bbfbecb556cf2cc1/Common-Currency.json").then(res => res.json()).then(res => {
+			searchRes.append(`
+			
+			 <div class="item-listing" onclick="window.location.href='/listing/${listing.id}'">
+	<img src="/static/listing_images/${listing["id"]}/0.${listing["imageType"][0]}">
+	<h3>${listing["title"]}</h3>
+	<br>
+		<p>${res[listing.currency]["symbol"] + " " +parseInt(listing["price"]).toLocaleString()}</p>
+      </div>
+			`)
+				})
 				}
 			}
 			
@@ -162,24 +177,27 @@ function chooseCategory(category){
 
 		data.forEach(listing => {
 			if(listing.owner == accName){
+				fetch("https://gist.githubusercontent.com/Fluidbyte/2973986/raw/5fda5e87189b066e11c1bf80bbfbecb556cf2cc1/Common-Currency.json").then(res => res.json()).then(res => {
+						$("#search-res").append(`
+			
+						
+						 <div class="item-listing" onclick="window.location.href='/listing/${listing.id}'">
+				<img src="/static/listing_images/${listing["id"]}/0.${listing["imageType"][0]}">
+				<h3>${listing["title"]}</h3>
+				<br>
+				<p>${res[listing.currency]["symbol"] + " " +parseInt(listing["price"]).toLocaleString()}</p>
+				<i class="far fa-trash-alt" onclick="DeleteListing('${listing.id}')"></i>
+			      </div>
+						`)
+			})
 
-				$("#search-res").append(`
-	
-				
-				 <div class="item-listing" onclick="window.location.href='/listing/${listing.id}'">
-		<img src="/static/listing_images/${listing["id"]}/0.${listing["imageType"][0]}">
-		<h3>${listing["title"]}</h3>
-		<br>
-		<p>$${parseInt(listing["price"]).toLocaleString()}</p>
-		<i class="far fa-trash-alt" onclick="DeleteListing('${listing.id}')"></i>
-	      </div>
-				`)
 				
 			}
 			else {
 				
 				if(logged){
 
+				fetch("https://gist.githubusercontent.com/Fluidbyte/2973986/raw/5fda5e87189b066e11c1bf80bbfbecb556cf2cc1/Common-Currency.json").then(res => res.json()).then(res => {
 					$("#search-res").append(`
 		
 					
@@ -187,30 +205,38 @@ function chooseCategory(category){
 			<img src="/static/listing_images/${listing["id"]}/0.${listing["imageType"][0]}">
 			<h3>${listing["title"]}</h3>
 			<br>
-			<p>$${parseInt(listing["price"]).toLocaleString()}</p>
+			<p>${res[listing.currency]["symbol"] + " " +parseInt(listing["price"]).toLocaleString()}</p>
 			<i class="far fa-heart" onclick="Fav(this, event)"></i>
 		      </div>
 					`)
+				})
+
 				}
 				else{
-					$("#search-res").append(`
-		
-					
-					 <div class="item-listing" onclick="window.location.href='/listing/${listing.id}'">
-			<img src="/static/listing_images/${listing["id"]}/0.${listing["imageType"][0]}">
-			<h3>${listing["title"]}</h3>
-			<br>
-			<p>$${parseInt(listing["price"]).toLocaleString()}</p>
-		      </div>
-					`)
+						fetch("https://gist.githubusercontent.com/Fluidbyte/2973986/raw/5fda5e87189b066e11c1bf80bbfbecb556cf2cc1/Common-Currency.json").then(res => res.json()).then(res => {
+							$("#search-res").append(`
+				
+							
+								<div class="item-listing" onclick="window.location.href='/listing/${listing.id}'">
+					<img src="/static/listing_images/${listing["id"]}/0.${listing["imageType"][0]}">
+					<h3>${listing["title"]}</h3>
+					<br>
+					<p>${res[listing.currency]["symbol"] + " " +parseInt(listing["price"]).toLocaleString()}</p>
+					</div>
+							`)
+						})
 
 				}
 			}
 		});
-
-		if($("#search-res div").length == 0){
-			$("#search-res").append("<span style=\"font-size:30px;margin-top:69px;\">No results found. </span>")
-		}
+		// setTimeout(() => {
+		// 	if($("#search-res div").length == 0){
+		// 		$("#search-res").append("<span style=\"font-size:30px;margin-top:69px;\">No results found. </span>")
+		// 	}
+		// }, 600)
+			if(data.length == 0){
+				$("#search-res").append("<span style=\"font-size:30px;margin-top:69px;\">No results found. </span>")
+			}
 	})
 
 

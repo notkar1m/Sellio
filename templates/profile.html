@@ -100,7 +100,7 @@
         <img src="/static/listing_images/{{listing['id']}}/0.{{listing["imageType"][0]}}">
         <h3>{{listing["title"]}}</h3>
         <br>
-        <p class="price">{{listing["price"]}}</p>
+        <p class="price">{{listing["currency"]}} {{listing["price"]}}</p>
       </div>
 		{%endfor%}
 	</div>
@@ -109,7 +109,9 @@
 	<script>
 		for(let i = 0;i<$(".price").length;i++) {
 			const element = $(".price")[i]
-			$(element).html("$" +parseInt($(element).html()).toLocaleString())
+      		fetch("https://gist.githubusercontent.com/Fluidbyte/2973986/raw/5fda5e87189b066e11c1bf80bbfbecb556cf2cc1/Common-Currency.json").then(res => res.json()).then(res => {
+            $(element).html(res[$(element).text().split(" ")[0]]["symbol"]+ " " +parseInt($(element).html().split(" ")[1]).toLocaleString())
+          })
 		}
 
 
