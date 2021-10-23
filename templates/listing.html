@@ -100,7 +100,7 @@
             <div id="item-imgs">
                   <i class="fas fa-chevron-circle-left" onclick="switchImageLeft()"></i>
                   {%for i in range(listing["imageType"]|length)%}   
-                  <img class="listing-images" src="/static/listing_images/{{listing['id']}}/{{i}}.{{listing['imageType'][i]}}">
+                  <img onclick="window.open(this.src , '_blank')" style="cursor:pointer" class="listing-images" src="/static/listing_images/{{listing['id']}}/{{i}}.{{listing['imageType'][i]}}">
                   {%endfor%}
 
                   <i class="fas fa-chevron-circle-right" onclick="switchImageRight()"></i>

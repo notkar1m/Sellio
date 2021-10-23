@@ -139,7 +139,7 @@ body {
 	font-weight: regular;
 	font-size:25px;
 	position: relative;
-	top: 10px;
+	top: 15px;
 	text-align: center;
 	
 
@@ -328,7 +328,7 @@ body {
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) { 
 /* @media only screen and (min-width: 768px){ */
-  .item-listing,::i-block-chrome { /*! if this bring back the clipping issue on iphone then just remove the "::i-block-chrome"*/
+  .item-listing img { /*! if this bring back the clipping issue on iphone then just remove the "::i-block-chrome" and remove the "img"*/
     clip: auto;
     -webkit-mask-image: -webkit-linear-gradient(top, #ffffff 0%,#ffffff 100%)
   }
@@ -425,6 +425,13 @@ font-size: 24px;
 @media  only screen and (max-width: 590px) {
 	.search-bar{
 		width: 80%;
+	}
+}
+@media  only screen and (max-height: 690px) {
+	
+	.component-selection p {
+		top: 50px;	
+
 	}
 }
 @media  only screen and (max-width: 1000px) {
