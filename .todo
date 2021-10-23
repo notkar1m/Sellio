@@ -1,8 +1,3 @@
-fix some css in mobile in navbar and in home page
-fix image clipping issue on mobile
-fix overflow issue on mobile in home page 
-show the right currency symbol in the creation (and also the error alerts)
-add peripherals category and also "other" category
 about page
 contact us
 make the db use mongodb instead of json

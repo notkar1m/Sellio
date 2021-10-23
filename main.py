@@ -7,6 +7,7 @@ import random
 import requests
 from shortuuid import uuid
 import os
+import shutil
 from countryinfo import CountryInfo
 app = Flask(__name__)
 
@@ -172,7 +173,16 @@ def new_listing():
         flash("Please login first.", category="error")
         return redirect("/")
 
-    return render_template("create.html", logged=True, username=cookie_name, pw=cookie_pw, r=random.randint(0, 10000))
+    if request.headers.getlist("X-Forwarded-For"):
+        ip = request.headers.getlist("X-Forwarded-For")[0]
+    else:
+        ip = request.remote_addr
+    if ip == "127.0.0.1" :
+        ip = "45.240.198.19"
+    
+    country = requests.get("http://ip-api.com/json/" + ip).json()["country"]
+    currency = CountryInfo(country).currencies()[0]
+    return render_template("create.html", logged=True, currency=currency,username=cookie_name, pw=cookie_pw, r=random.randint(0, 10000))
 
 
 @app.route('/add-listing', methods=['post'])
@@ -359,8 +369,8 @@ def removeListing(id):
     if id not in listings.keys():
         return jsonify({"res":"listing not found"})
 
-    for i in range(len(listings[id]["imageType"])):
-        os.remove("/listing_images/" + id + listings[id]["imageType"][i])
+    for _ in range(len(listings[id]["imageType"])):
+        shutil.rmtree("./static/listing_images/" + id )
     user_data[username]["listings"].remove(id)
     del listings[id]
     for user in user_data:
@@ -474,6 +484,21 @@ def send_report():
 
 
 
+@app.route('/about')
+def about():
+    cookie_name = request.cookies.get('name')
+    cookie_pw = request.cookies.get('pw')
+    if cookie_name and cookie_pw:
+        try:
+            if user_data[cookie_name]['pw'] == hasher(cookie_pw):
+                return render_template("about.html", logged=True, username=cookie_name, pw=cookie_pw, r=random.randint(0, 10000))
+            else:
+                return render_template("about.html",  logged=False, r=random.randint(0, 10000))
+        except KeyError:
+            return render_template("about.html",   logged=False, r=random.randint(0, 10000))
+    else:
+        return render_template("about.html",  logged=False, r=random.randint(0, 10000))
+    
 
 
 @app.route('/flash=<flashMessage>_url=<url>')

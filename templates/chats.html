@@ -26,7 +26,7 @@
       <div id="user-opts" style="display:none">
         <h3 id="user-name">Logged as {{username}}</h3>
         <div class="options" onclick="window.location.href = '/user/{{username}}'"><i class="fas fa-user-circle"></i> Profile</div>
-        <div class="options"><i class="fas fa-info-circle"></i><span style="margin-left: 30px;"> About Sellio </span></div>
+        <div class="options" onclick="window.location.href = '/about'"><i class="fas fa-info-circle"></i><span style="margin-left: 30px;"> About Sellio </span></div>
         <div class="options"  onclick="window.location.href = '/logout'"><i class="fas fa-sign-out-alt"></i> <span style="color: #FF6868;">Log out</span></div>
       </div>
   <i class="fas fa-bars" style="display: none;" onclick="BringUpMobileNavBar()"></i>
@@ -38,28 +38,28 @@
          <!-- <img src="/static/logo.png" id="logo"> -->
     <img src="/static/logo.png" onclick="window.location.pathname = '/'" id="logo">
         <a href="/" class="navbar-links">Home</a>
-        <br>
-        <br>
+        <!-- <br>
+        <br> -->
         <a onclick="ShowLogin()"class="navbar-links">Login</a>
         <div class="new-listing-btn" onclick="ShowAuth()"><i class="fas fa-user-plus"></i><span>Sign up</span></div>
         {%else%}
               <!-- <img src="/static/logo.png" id="logo"> -->
     <!-- <img src="/static/logo.png" onclick="window.location.pathname = '/'" id="logo"> -->
          <a href="/" class="navbar-links">Home</a>
+         <!-- <br>
          <br>
          <br>
-         <br>
-         <br>
+         <br> -->
     <a href="/chats" class="navbar-links">Chats</a>
+         <!-- <br>
          <br>
          <br>
-         <br>
-         <br>
+         <br> -->
     <a href="/favorites" class="navbar-links">Favorites</a>
+         <!-- <br>
          <br>
          <br>
-         <br>
-         <br>
+         <br> -->
     <div class="new-listing-btn" onclick="window.location.href = '/new-listing'"><i class="fas fa-plus-circle"></i><span>New Listing</span></div>
     <!-- <img onclick="$('#user-opts').toggle()"id="pfp" src="https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar">  -->
            <img  onclick="window.location.href = '/user/{{username}}'" id="pfp" src="/static/pfps/{{username}}.jpg?r={{r}}" onerror="if (this.src != 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar') this.src = 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar';">

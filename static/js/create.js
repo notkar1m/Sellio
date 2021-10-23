@@ -101,10 +101,10 @@ $(() => {
         }
 
 
-        if(parseInt(price) < 5 || parseInt(price) > 100000){
+        if(parseInt(price) < 1 || parseInt(price) > 100000){
              iziToast.error({
               title: 'Error',
-              message: 'Min price is $5 and the max is $100,000'
+              message: `Min price is ${currency} 1 and the max is ${currency} 100,000`
           });
             return
         }
@@ -130,7 +130,7 @@ $(() => {
         }).then((response) => {
             return response.text()
         }).then((id) =>{
-		window.location.href ="/flash=Item%20Published!_url=listingSLASH" + id
+		window.location.href ="/flash=Item Published!_url=listingSLASH" + id
         })
 
     }

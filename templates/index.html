@@ -16,6 +16,8 @@
            <!-- <img src="/static/logo.png" id="logo"> -->
       <img src="/static/logo.png" onclick="window.location.pathname = '/'" id="logo">
           <a href="/" class="navbar-links">Home</a>
+          <a href="/about" class="navbar-links">About Sellio</a>
+
           <a onclick="ShowLogin()"class="navbar-links">Login</a>
           <div class="new-listing-btn" onclick="ShowAuth()"><i class="fas fa-user-plus"></i><span>Sign up</span></div>
           {%else%}
@@ -31,7 +33,7 @@
         <h3 id="user-name">Logged as {{username}}</h3>
         <div class="options" onclick="window.location.href = '/user/{{username}}'"><i class="fas fa-user-circle"></i> Profile</div>
         <!-- <div class="options"><i class="fas fa-cog"></i> Settings</div> -->
-                <div class="options"><i class="fas fa-info-circle"></i><span style="margin-left: 30px;"> About Sellio </span></div>
+        <div class="options" onclick="window.location.href = '/about'"><i class="fas fa-info-circle"></i><span style="margin-left: 30px;"> About Sellio </span></div>
         <div class="options"  onclick="window.location.href = '/logout'"><i class="fas fa-sign-out-alt"></i> <span style="color: #FF6868;">Log out</span></div>
       </div>
 
@@ -89,7 +91,7 @@
 
     {%if not logged%}
     <div id="welcome-div">
-      <h3>Welcome to Sellio, the place where computer enthusiasts buy and sell PC parts.</h3>
+      <h3>Welcome to Sellio, the place where computer enthusiasts buy and sell PC parts. <a href="/about" style="color: #2d3142;">About Sellio</a> </h3>
       <button onclick="ShowAuth()">Sign Up</button>
       <button onclick="ShowLogin()">Login</button>
       <button  onclick="$('#welcome-div').fadeOut(200)">Close</button>
@@ -107,6 +109,8 @@
 		<div class="component"><div style="background-color:#4F5D75" class="icon"></div> <span>Power Supply</span></div>
 		<div class="component"><div style="background-color:#80FF54" class="icon"></div> <span>Memory</span></div>
 		<div class="component"><div style="background-color:#27282F" class="icon"></div> <span>Case</span></div>
+		<div class="component"><div style="background-color:#ffd000" class="icon"></div> <span>Accessories</span></div>
+		<div class="component"><div style="background-color:#5d5bff" class="icon"></div> <span>Other</span></div>
 	</div>
 
   <!-- #region ITEM DIV EXAMPLE-->

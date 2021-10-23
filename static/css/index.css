@@ -473,7 +473,8 @@ font-size: 38px;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000000000;  
-    width: 90%;
+    /* width: 90%; */
+    width: 370px;
     border-radius: 21px;
     transition: 0s !important;
     text-align: center;
@@ -490,6 +491,15 @@ font-size: 38px;
     font-size: 24px;
 }
 
+#mobile-nav #logo {
+	width: 85px !important;
+	margin: 0 0 0 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 90px !important;
+    	
+    cursor: pointer !important;
+}
 
 #mobile-nav .new-listing-btn {
 	    position: relative;
@@ -609,7 +619,7 @@ font-size: 38px;
 	}
 
 	#latest-listings-hr {
-		margin-top: 972px;
+		margin-top: 1104px;
 
 	}
 }

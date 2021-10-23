@@ -4,6 +4,9 @@
 	transition: 0.2s;
 }
 
+*::selection{
+	background-color: #acd7fbaf
+}
 body {
 	background-color: #f5f5f5;
 	font-family: 'Poppins', sans-serif;

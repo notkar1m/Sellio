@@ -184,6 +184,9 @@ font-size: 45px;
     #message-btn {
         display: none;
     }
+   body {
+        zoom: 80%;
+    }
 }
 @media only screen and (max-width: 576px){
     #target-pfp {
@@ -202,5 +205,10 @@ font-size: 45px;
     #phone {
         left: 52.4%;
     }
+    .fa-phone-alt {
+        left:42%;
+    }
+
+ 
 }
 
