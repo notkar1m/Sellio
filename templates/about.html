@@ -2,6 +2,9 @@
 
 {%block head%}
 <link rel="stylesheet" href="static/css/index.css">
+<script>
+  var accName = "{{username}}"
+</script>
 <script src="static/js/index.js"></script>
 {%endblock%}
 
@@ -85,6 +88,26 @@
         a {
           color: #ef8354;
         }
+        button {
+           background-color: #EF8354;
+    color: white;
+    width: 130px;
+    height: 35px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    border: none;
+    outline: none;
+    margin: auto;
+    cursor: pointer;
+    font-size: 17px;
+        }
+                button:hover {
+                  opacity: 0.8;
+                }
       </style>
 
 
@@ -129,6 +152,13 @@
         The name "Sellio" originated from 2 words which are Sell and IO which stands for "Input/Output". So basically it's where you sell 
         things with inputs and outputs.
 
+        <br>
+        <br>
+
+        <br>
+        {%if logged%}
+        <button onclick="ContactUs()">Contact us</button>
+        {%endif%}
         <br>
         <br>
         <center><img src="/static/logo.png" style="height:50px;margin-bottom:14px"></center>

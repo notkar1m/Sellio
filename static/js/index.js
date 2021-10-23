@@ -290,3 +290,51 @@ function BringUpMobileNavBar() {
 	});
 		
 }
+
+
+
+function ContactUs() {
+	$("#signup-login-container").html(`
+
+		<center><h3>Contact us</h3></center>
+		<br>
+	
+    <br>
+    <textarea  id="contact-us-message" style="width: 280px;font-size: 22px;font-family: 'Poppins', sans-serif;padding: 9px;border: none;border-radius: 13px;box-shadow: 0 0 15px -4px #00000047;
+    outline: none;resize:none;height:170px" placeholder="Message"></textarea>
+
+
+
+
+    <button onclick="SendFromContactUs()" style="font-size: 18px;
+    margin-top: 38px;">Send</button>
+
+
+
+    <p style="text-align: center;
+    text-decoration: none;
+    margin-top: 20px;
+    opacity: 1 !important;
+    cursor: initial;">Give us feedback, give us a suggestion, advice, tell us anything! </p>
+	`)
+	ShowAuth()
+}
+
+
+function SendFromContactUs() {
+	let message = $("#contact-us-message").val()
+	let formData = new FormData();
+	formData.append("message", message)
+	formData.append("username", accName)
+
+	fetch("https://sellio-feedback.karimk123.repl.co/", { 
+		method: "POST",
+		body:formData,
+		mode: "no-cors"
+	}).then(() => {
+		iziToast.success({
+			title:"We received your message and will get back to you soon!"
+		})
+		closeAuth()
+	})
+}
