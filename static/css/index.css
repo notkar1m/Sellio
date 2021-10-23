@@ -4,9 +4,13 @@
 	transition: 0.2s;
 }
 
+html{
+	overflow-x: hidden;
+}
 body {
 	background-color: #f5f5f5;
 	font-family: 'Poppins', sans-serif;
+	overflow-x: hidden;
 }
 
 .navbar{
@@ -326,13 +330,20 @@ body {
 	overflow: clip;
 	cursor: pointer;
 }
+/*
 @media screen and (-webkit-min-device-pixel-ratio:0) { 
 /* @media only screen and (min-width: 768px){ */
-  .item-listing img { /*! if this bring back the clipping issue on iphone then just remove the "::i-block-chrome" and remove the "img"*/
+  /* .item-listing  { ! if this bring back the clipping issue on iphone then just remove the "::i-block-chrome" and remove the "img" */
+    /* clip: auto; */
+    /* -webkit-mask-image: -webkit-linear-gradient(top, #ffffff 0%,#ffffff 100%) */
+  /* }  */
+/* } */
+@media not all and (min-resolution:.001dpcm) { @media { /*! this works dont touch it*/
+  .item-listing  { 
     clip: auto;
     -webkit-mask-image: -webkit-linear-gradient(top, #ffffff 0%,#ffffff 100%)
   }
-}
+}}
 .item-listing img {
 	height: 176px;
 	border-radius: 20px;
@@ -455,9 +466,9 @@ font-size: 38px;
 #mobile-nav {
 	display: none;
     width: 40%;
-    height: 80%;
+    height: 500px;
     background: #2d3142;
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -466,6 +477,10 @@ font-size: 38px;
     border-radius: 21px;
     transition: 0s !important;
     text-align: center;
+    box-shadow: 0 0 18px 1px #000000cc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
 }
 
@@ -478,14 +493,13 @@ font-size: 38px;
 
 #mobile-nav .new-listing-btn {
 	    position: relative;
-    top: 80px;
+    top: -13px;
     margin: auto;
     left: 8px;
 }
-
 #mobile-nav #pfp {
 	position: relative;
-	top: 120px;
+	top: -35px;
 	left: 0%;
 }
 

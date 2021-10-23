@@ -1,8 +1,7 @@
 var accName;
 $(() => {
 	 accName = $("#user-name").text().split(" ")[2]
-
-
+	$("#mobile-nav").hide()
 	 for (var i = 0; i < $("#latest-listings-res div").length;i++)	{
 			const listing = $("#latest-listings-res div")[i]
 			fetch("/get-my-favs").then((response) => {
