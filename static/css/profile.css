@@ -182,7 +182,14 @@ font-size: 45px;
     }
 
     #message-btn {
-        display: none;
+            top: 226px;
+            height: 20px;
+            font-size: 19px;
+            padding: 11px;
+            left: 40%;
+            padding-bottom: 19px;
+            padding-right: 0px;
+            padding-left: 24px;
     }
    body {
         zoom: 80%;
@@ -197,16 +204,26 @@ font-size: 45px;
     }
     #target-name {
         left: 47%;
+        top:90px;
     }
     .fa-phone-alt {
         left: 47%;
+        top: 150px;
     }
 
     #phone {
         left: 52.4%;
+        top: 150px
     }
     .fa-phone-alt {
         left:42%;
+    }
+    #search-res {
+        margin-top:40px;
+    }
+
+    hr{
+        margin-top: 240px;
     }
 
  

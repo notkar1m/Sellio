@@ -286,6 +286,7 @@ function BringUpMobileNavBar() {
 	if (!container.is(e.target) && container.has(e.target).length === 0) 
 	{
 		container.fadeOut();
+		$('#user-opts').hide()
 	}
 	});
 		
@@ -323,7 +324,7 @@ function ContactUs() {
 
 function SendFromContactUs() {
 	let message = $("#contact-us-message").val()
-	let formData = new FormData();
+	let formData = new FormData().show();
 	formData.append("message", message)
 	formData.append("username", accName)
 

@@ -4,11 +4,12 @@ var messageInput;
 
 $(() => {
 
+	updateLSchatLength()
 	 targetName = window.location.hash.slice(1)
 	messagesContainer = $("#messages-container")
 	messageInput = $("#send-message-container")
 	loadMessages(targetName)
-
+	
 	setInterval(() => {
 		fetch("/get-my-messages").then((res) => {return res.json()}).then((res) => {
 			let tempChats = chats
@@ -16,6 +17,7 @@ $(() => {
 			loadMessages(targetName)
 			if(tempChats[targetName].length != chats[targetName].length){
 				messagesContainer[0].scrollTop = messagesContainer[0].scrollHeight;
+				updateLSchatLength()
 			}
 		})
 	},3000)
@@ -28,8 +30,22 @@ $(() => {
 
 
 	messagesContainer[0].scrollTop = messagesContainer[0].scrollHeight;
+
+
+	setTimeout(()=> {
+		messagesContainer[0].scrollTop = messagesContainer[0].scrollHeight;
+		if(!$(".navbar-links")[1].getElementsByTagName("i")[0])return
+		$(".navbar-links")[1].getElementsByTagName("i")[0].remove()
+	}, 1000)
 })
 
+
+function updateLSchatLength(){
+	fetch("/get-chat-length").then(res => res.json()).then((res) => {
+		chatLength = res["res"]
+		localStorage.setItem("chatLength",chatLength)
+	})
+}
 
 function sanitizeString(str){
     str = str.replace(/[^a-z0-9áéíóúñü \.,_-]/gim,"");
@@ -39,7 +55,9 @@ function sanitizeString(str){
 function loadMessages(selectedName) {
 	$("#messages-container").html("")
 	
-
+	if($("#mobile-user-div h3").text() != selectedName){
+		$("#mobile-user-div h3").text(selectedName)
+	}
 	messageInput.show()
 	if (selectedName == "" || selectedName in chats == false){
 		messagesContainer.append("<h4>Select contact to see messages.")	
@@ -80,13 +98,27 @@ function sendMessage(msg) {
 		fetch("/get-my-messages").then((res) => {return res.json()}).then((res) => {
 				
 				chats = res
+				console.log(chats)
 				loadMessages(targetName)
 				messagesContainer[0].scrollTop = messagesContainer[0].scrollHeight;
+				updateLSchatLength()
 				
 			})
 	})
 
 	
+}
+
+
+function ShowMobileContacts() {
+	
+	$("#contact-list").toggle()
+	document.addEventListener('mouseup', function(event) {
+		var isClickInsideElement = $("#contact-list")[0].contains(event.target);
+		if (!isClickInsideElement) {
+			$("#contact-list").hide()
+		}
+	});
 }
 
 

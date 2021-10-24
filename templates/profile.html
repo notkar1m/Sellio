@@ -68,8 +68,7 @@
          <br> -->
     <div class="new-listing-btn" onclick="window.location.href = '/new-listing'"><i class="fas fa-plus-circle"></i><span>New Listing</span></div>
     <!-- <img onclick="$('#user-opts').toggle()"id="pfp" src="https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar">  -->
-           <img  onclick="window.location.href = '/user/{{username}}'" id="pfp" src="/static/pfps/{{username}}.jpg?r={{r}}" onerror="if (this.src != 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar') this.src = 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar';">
-    
+     <img  onclick="$('#user-opts').show();$(document).mouseup(function(e) {var container = $('#user-opts');if (!container.is(e.target) && container.has(e.target).length === 0) {container.hide()}});" id="pfp" src="/static/pfps/{{username}}.jpg?r={{r}}" onerror="if (this.src != 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar') this.src = 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar';">
 
     {%endif%}
 

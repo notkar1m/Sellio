@@ -152,7 +152,7 @@ def index():
     if cookie_name and cookie_pw:
         try:
             if user_data[cookie_name]['pw'] == hasher(cookie_pw):
-                return render_template("index.html", logged=True, latestListings=getLatestListings(),username=cookie_name, pw=cookie_pw, r=random.randint(0, 10000))
+                return render_template("index.html", logged=True,latestListings=getLatestListings(),username=cookie_name, pw=cookie_pw, r=random.randint(0, 10000))
             else:
                 return render_template("index.html", latestListings=getLatestListings(), logged=False, r=random.randint(0, 10000))
         except KeyError:
@@ -500,6 +500,20 @@ def about():
         return render_template("about.html",  logged=False, r=random.randint(0, 10000))
     
 
+@app.route('/get-chat-length')
+def get_chat_length():
+        username = request.cookies.get("name")
+        pw = request.cookies.get("pw")
+     
+        if hasher(pw) == user_data[username]["pw"]:
+            res = 0
+            for chat in user_data[username]["chats"]:
+                res += len(user_data[username]["chats"][chat])
+            return jsonify({"res":res})
+
+        else:
+            return "wrong password"
+    
 
 @app.route('/flash=<flashMessage>_url=<url>')
 def customFlash(flashMessage, url):

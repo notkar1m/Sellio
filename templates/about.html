@@ -34,8 +34,8 @@
         <div class="options"><i class="fas fa-info-circle"></i><span style="margin-left: 30px;"> About Sellio </span></div>
         <div class="options"  onclick="window.location.href = '/logout'"><i class="fas fa-sign-out-alt"></i> <span style="color: #FF6868;">Log out</span></div>
       </div>
-  <i class="fas fa-bars" style="display: none;" onclick="BringUpMobileNavBar()"></i>
       {%endif%}
+      <i class="fas fa-bars" style="display: none;" onclick="BringUpMobileNavBar()"></i>
       {%endblock%}
       {%block content%}
  <div id="mobile-nav">
@@ -69,11 +69,11 @@
          <br> -->
     <div class="new-listing-btn" onclick="window.location.href = '/new-listing'"><i class="fas fa-plus-circle"></i><span>New Listing</span></div>
     <!-- <img onclick="$('#user-opts').toggle()"id="pfp" src="https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar">  -->
-           <img  onclick="window.location.href = '/user/{{username}}'" id="pfp" src="/static/pfps/{{username}}.jpg?r={{r}}" onerror="if (this.src != 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar') this.src = 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar';">
+           <img  onclick="$('#user-opts').show();$(document).mouseup(function(e) {var container = $('#user-opts');if (!container.is(e.target) && container.has(e.target).length === 0) {container.hide()}});" id="pfp" src="/static/pfps/{{username}}.jpg?r={{r}}" onerror="if (this.src != 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar') this.src = 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar';">
     
+           {%endif%}
            </div>
 
-    {%endif%}
       <style>
         h2{
           margin-top: 30px;

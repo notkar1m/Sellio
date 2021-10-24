@@ -203,15 +203,111 @@ background: #7586c2;
         margin-left: 33px;
     }
 }
+@media only screen and (min-width:656px){
+    #contact-list {
+        display: block !important;
+    }
+}
 @media only screen and (max-width:656px){
-    #desktop-only-warning{
+    /* #desktop-only-warning{
         display: block;
-    }
-    #container {
+    } */
+    /* #container {
         display:none
+    } */
+
+    #container {
+        zoom: 80%;
     }
-    h2{
-        display:none;
+
+    #contact-list {
+        display: none;
+        position: absolute;
+        z-index: 999;
+        width:465px;
+        
+    }
+  
+    #messages-container  {
+        top: 0;  
+        left: 1%;
+        width:99%;
+        border-bottom-left-radius: 0;
+        background-color: transparent;
+        height:426px
+    }
+    #messages-container h4 {
+        font-size: 25px;
+        margin-left: 30px;
+        
+    }
+    
+    #send-message-container {
+            width: 98%;
+            left: 7px;
+            border-radius: 0;
+            background: transparent;
+            padding-left: 6%;
+    }
+
+
+    #send-message-container input {
+            left: 8px;
+            top: 8px;
+            transform: none;
+            width: 50%;
+    }
+    #send-message-container i {
+            position: relative;
+            right: 0px;
+            top: 10px;
+    }
+
+
+    #mobile-user-div {
+        display: block !important;
+        width: 90%;
+        height: fit-content;
+        padding: 20px;
+        position: relative;
+        background: #4c5970;
+        top: -50px;  
+        border-radius: 10px;
+        box-shadow: 0 0 16px #00000085;
+        min-height: 29px;
+
+
+    }
+
+    #mobile-user-div h3 {
+        color: white;
+
+    }
+
+
+    #mobile-user-div i{
+        position: absolute;
+        font-size: 23px;
+        color: white;
+        left: 19px;
+        background: #8f8f8f52;
+        padding: 10px;
+        border-radius: 11px;
+        top: 12px;
+    }
+
+
+    #contact-list {
+        position: absolute;
+        z-index: 999;
+        width: 364px;
+        top: -10px;
+        min-height: 390px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        top: 43%;
+        box-shadow: 0 0 16px #00000085;
+        position: fixed;
     }
 }
 
