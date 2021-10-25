@@ -76,7 +76,7 @@
 		<div id="contact-list">
 			{%for contact in chats%}
 			<div class="contact" id="{{contact}}" onclick="loadMessages('{{contact}}')">
-				<img src="/static/pfps/{{contact}}.jpg" onerror="if (this.src != 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar') this.src = 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar';">
+				<img onclick="window.location.href = '/user/{{contact}}'" src="/static/pfps/{{contact}}.jpg" onerror="if (this.src != 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar') this.src = 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar';">
 				<h3>{{contact}}</h3>
 			</div>
 			{%endfor%}
