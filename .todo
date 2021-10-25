@@ -1,5 +1,7 @@
-add category specific specifcation in the creation like for example cpu clock speed, etc...
 optimize chat by making it saved once in one file chat.js instead of saving it twice in each user in users.json
+
+be able to add new chat in chats
+add category specific specifcation in the creation like for example cpu clock speed, etc...
 make the db use mongodb instead of json
 (maybe) phone number verifying
 

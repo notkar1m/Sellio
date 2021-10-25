@@ -1,0 +1,133 @@
+{%extends "base.html"%}
+
+
+  {%block head%}    
+	<link rel="stylesheet" href="/static/css/profile.css">
+	 <link rel="stylesheet" href="/static/css/index.css" /> 
+<script src="/static/js/index.js"></script>
+   {%endblock%}
+   {%block title%} <title>{{targetName}}'s Profile </title>{%endblock%}
+   
+
+  {%block navbar%} 
+    {%if not logged%}
+           <!-- <img src="/static/logo.png" id="logo"> -->
+      <img src="/static/logo.png" onclick="window.location.pathname = '/'" id="logo">
+          <a href="/" class="navbar-links">Home</a>
+          <a href="/about" class="navbar-links">About Sellio</a>
+          <a onclick="ShowLogin()"class="navbar-links">Login</a>
+          <div class="new-listing-btn" onclick="ShowAuth()"><i class="fas fa-user-plus"></i><span>Sign up</span></div>
+          {%else%}
+                 <!-- <img src="/static/logo.png" id="logo"> -->
+      <img src="/static/logo.png" onclick="window.location.pathname = '/'" id="logo">
+           <a href="/" class="navbar-links">Home</a>
+      <a href="/chats" class="navbar-links">Chats</a>
+      <a href="/favorites" class="navbar-links">Favorites</a>
+      <div class="new-listing-btn" onclick="window.location.href = '/new-listing'"><i class="fas fa-plus-circle"></i><span>New Listing</span></div>
+      <!-- <img onclick="$('#user-opts').toggle()"id="pfp" src="https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar">  -->
+                   <img  onclick="$('#user-opts').toggle()" id="pfp" src="/static/pfps/{{username}}.jpg?r={{r}}" onerror="if (this.src != 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar') this.src = 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar';">
+      <div id="user-opts" style="display:none">
+        <h3 id="user-name">Logged as {{username}}</h3>
+        <div class="options" onclick="window.location.href = '/user/{{username}}'"><i class="fas fa-user-circle"></i> Profile</div>
+		<div class="options" onclick="window.location.href = '/about'"><i class="fas fa-info-circle"></i><span style="margin-left: 30px;"> About Sellio </span></div>
+        <div class="options"  onclick="window.location.href = '/logout'"><i class="fas fa-sign-out-alt"></i> <span style="color: #FF6868;">Log out</span></div>
+      </div>
+          {%endif%}
+  <i class="fas fa-bars" style="display: none;" onclick="BringUpMobileNavBar()"></i>
+
+      {%endblock%}
+      {%block content%}
+      <div id="mobile-nav">
+{%if not logged%}
+         <!-- <img src="/static/logo.png" id="logo"> -->
+         <a href="/" class="navbar-links">Home</a>
+         <!-- <br>
+         <br> -->
+         <a onclick="ShowLogin()"class="navbar-links">Login</a>
+         <!-- <br>
+         <br> -->
+         <div class="new-listing-btn" onclick="ShowAuth()"><i class="fas fa-user-plus"></i><span>Sign up</span></div>
+         <img src="/static/logo.png" style="width: 85px;margin: 190px 0 0 0;cursor: pointer;" onclick="window.location.pathname = '/'" id="logo">
+        {%else%}
+              <!-- <img src="/static/logo.png" id="logo"> -->
+    <!-- <img src="/static/logo.png" onclick="window.location.pathname = '/'" id="logo"> -->
+         <a href="/" class="navbar-links">Home</a>
+         <!-- <br>
+         <br>
+         <br>
+         <br> -->
+    <a href="/chats" class="navbar-links">Chats</a>
+         <!-- <br>
+         <br>
+         <br>
+         <br> -->
+    <a href="/favorites" class="navbar-links">Favorites</a>
+         <!-- <br>
+         <br>
+         <br>
+         <br> -->
+    <div class="new-listing-btn" onclick="window.location.href = '/new-listing'"><i class="fas fa-plus-circle"></i><span>New Listing</span></div>
+    <!-- <img onclick="$('#user-opts').toggle()"id="pfp" src="https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar">  -->
+     <img  onclick="$('#user-opts').show();$(document).mouseup(function(e) {var container = $('#user-opts');if (!container.is(e.target) && container.has(e.target).length === 0) {container.hide()}});" id="pfp" src="/static/pfps/{{username}}.jpg?r={{r}}" onerror="if (this.src != 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar') this.src = 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar';">
+
+    {%endif%}
+
+      </div>
+
+
+  {%if targetName == username%}
+  <!-- <img id="target-pfp" class="change-pfp" src="https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar" alt=""> -->
+                     <img  id="target-pfp" class="change-pfp" src="/static/pfps/{{targetName}}.jpg?r={{r}}" onerror="if (this.src != 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar') this.src = 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar';">
+<i id="change-pfp-cam"class="fas fa-camera" onclick="ChangePfp()"></i>
+<input type="file" id="change-pfp-input" style="display:none" accept="image/jpeg">
+  {%else%}
+  <!-- <img id="target-pfp" src="https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar" alt=""> -->
+                       <img  id="target-pfp" src="/static/pfps/{{targetName}}.jpg?r={{r}}" onerror="if (this.src != 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar') this.src = 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar';">
+  {%endif%}
+  <h3 id="target-name">{{targetName}}</h3>            
+  {%if targetName != username and logged%}
+   <div id="message-btn" onclick="window.location.href = '/add-user-to-chat_user={{targetName}}'"><i class="fas fa-comment-dots"></i> Message</div>
+   {%endif%}
+	<i class="fas fa-phone-alt"></i> <span id="phone">{{phone}}</span>
+
+	<hr>
+	<h2>Listings</h2>
+	<br>
+	<br>
+	<div id="search-res">
+		{%for listing in listings%}
+		<div class="item-listing" onclick="window.location.href='/listing/{{listing['id']}}'">
+        <img src="/static/listing_images/{{listing['id']}}/0.{{listing["imageType"][0]}}">
+        <h3>{{listing["title"]}}</h3>
+        <br>
+        <p class="price">{{listing["currency"]}} {{listing["price"]}}</p>
+      </div>
+		{%endfor%}
+	</div>
+
+
+	<script>
+		for(let i = 0;i<$(".price").length;i++) {
+			const element = $(".price")[i]
+      		fetch("https://gist.githubusercontent.com/Fluidbyte/2973986/raw/5fda5e87189b066e11c1bf80bbfbecb556cf2cc1/Common-Currency.json").then(res => res.json()).then(res => {
+            $(element).html(res[$(element).text().split(" ")[0]]["symbol"]+ " " +parseInt($(element).html().split(" ")[1]).toLocaleString())
+          })
+		}
+
+
+   function ChangePfp() {
+      $("#change-pfp-input").click()
+      $("#change-pfp-input")[0].onchange = (event) => {
+      let formData = new FormData();
+      formData.append("image", event.target.files[0])
+        fetch("/change-pfp", {
+          method: "POST",
+          body: formData
+        }).then(() => {
+          window.location.pathname = "flash=Profile picture changed successfully!_url=userSLASH" + "{{username}}"
+          
+        })
+      }
+   }
+  </script>
+  {%endblock%}

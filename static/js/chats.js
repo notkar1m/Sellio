@@ -80,6 +80,20 @@ function loadMessages(selectedName) {
 		
 	}
 
+
+		messagesContainer[0].scrollTop = messagesContainer[0].scrollHeight;
+
+
+		$(".contact h3").filter( function (){
+			let r = $( this ).text().toLowerCase() == selectedName
+			if (r) return r
+			else{
+				$(this).parent().css("background", "#373c53")
+			}
+		}).first().parent().css("background", "#494f6a")
+
+		
+
 }
 
 

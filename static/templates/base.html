@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {%block title%}<title>Sellio - {% block page %}{% endblock %}</title>{%endblock%}
+    <link rel="stylesheet" href="/static/css/base.css?r={{r}}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/383a3bf828.js" crossorigin="anonymous"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="/static/iziToast/dist/js/iziToast.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <link rel="stylesheet" href="/static/iziToast/dist/css/iziToast.min.css">
+
+  <script src="/static/js/base.js?r={{r}}"></script>
+  <link rel="shortcut icon" href="/static/favicon.png" >
+  <!-- <script src="/static/js/index.js?r={{r}}"></script> -->
+
+	{% block head%} {% endblock%}
+  </head>
+  <body>
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %} {% for category, message in messages %} {% if category ==
+        'error' %}
+    
+        <script>
+          iziToast.error({
+              title: 'Error',
+              message: '{{message}}',
+          });
+            </script>
+        {% else %}
+        <script>
+          iziToast.success({
+            title: 'OK',
+            message: "{{message}}",
+        });
+            </script>
+         {% endif %} 
+    {% endfor %} {% endif %} {% endwith %}
+    <div id="signup-login-container" style="display: none">
+      <div id="signup" >
+
+        <h3>Signup</h3>
+        <br>
+        <br>
+        <form action="/sign-up" method="post">
+          
+          <input name="name" type="text" placeholder="Choose  Username">
+          <br>
+          
+          <input type="tel" pattern="{1}[0-9]{11,14}"  name="pn" placeholder="Enter your phone number">
+          <br>
+          <input name="pw" type="password" placeholder="Choose a Password">
+          <br>
+          <input id="ip-input" style="display:none"/>
+          
+          <button type="submit">Sign up</button>
+          
+          <br>
+          <p onclick="switchLoginAndSignup()">Already have an account?</p>
+          
+          
+        </form>
+      </div>
+      
+	
+    <div id="login"style="display: none">
+
+        <h3>Login</h3>
+        <br>
+        <br>
+        <form action="/login" method="post">
+          
+          <input name="name" type="text" placeholder="Enter your Username">
+          <br>
+          
+          <input name="pw" type="password" placeholder="Enter your password">
+          <br>
+          
+          <button type="submit">Login</button>
+          
+          <br>
+          <p  onclick="switchLoginAndSignup()">Don't have an account yet?</p>
+          <br>
+          <br>
+          <br>
+          
+          
+        </form>
+      </div>
+    </div>
+
+    <div id="overlay" onclick="closeAuth()"></div>
+    
+    
+    <div class="navbar">
+      {%block navbar%}
+      <img src="/static/logo.png" onclick="window.location.pathname = '/'" id="logo">
+      <a href="/" class="navbar-links">Home</a>
+      <a href="/chats" class="navbar-links">Chats</a>
+      <a href="/favorites" class="navbar-links">Favorites</a>
+      <div class="new-listing-btn"><i class="fas fa-plus-circle"></i><span>New Listing</span></div>
+       <img id="pfp" src="/static/pfps/{{username}}.jpg?r={{r}}" onerror="if (this.src != 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar') this.src = 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar';">
+
+      {%endblock%}
+    </div>
+
+    {%block content %}{% endblock %}
+   
+  </body>
+</html>

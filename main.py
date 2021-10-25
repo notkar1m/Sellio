@@ -1,5 +1,6 @@
 # coding=utf8
 import datetime
+import sys
 from flask import *
 import hashlib
 import json
@@ -25,12 +26,21 @@ def hasher(text) -> str: h = hashlib.md5(text.encode()); return h.hexdigest()
 
 
 def dumpJson():
+    global user_data
+    global listings
+    global reports
     with open("db/users.json", "w+") as fp:
         json.dump(user_data, fp, indent=4)
     with open("db/listings.json", "w+") as fp:
         json.dump(listings, fp, indent=4)
     with open("db/reports.json", "w+") as fp:
         json.dump(reports, fp, indent=4)
+    with open("db/users.json") as fp:
+        user_data = json.load(fp)
+    with open("db/listings.json") as fp:
+        listings = json.load(fp)
+    with open("db/reports.json") as fp:
+        reports = json.load(fp)
 # endregion
 
 
@@ -104,10 +114,9 @@ def sign_up():
 
 @app.route('/login', methods=['post', 'get'])
 def login():
-    global user_data
-    name = request.form['name']
-    pw = request.form['pw']
-    if name in user_data.keys():
+    name = request.form.get('name')
+    pw = request.form.get('pw')
+    if name in user_data:
         if user_data[name]['pw'] == hasher(pw):
             cookie = make_response(redirect("/"))
             cookie.set_cookie('name', name)
@@ -115,10 +124,10 @@ def login():
             flash("Logged in!", category="success")
             return cookie
         else:
-            flash("Username or password incorrect.", category="error")
+            flash("Username or password incorrect." + pw + " " + hasher(pw) , category="error")
             return redirect("/")
     else:
-        flash("Username or password incorrect.", category="error")
+        flash("Username doesn't exist." + name + " " + str(user_data), category="error")
         return redirect("/")
 
 
