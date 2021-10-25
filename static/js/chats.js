@@ -15,9 +15,14 @@ $(() => {
 			let tempChats = chats
 			chats = res
 			loadMessages(targetName)
-			if(tempChats[targetName].length != chats[targetName].length){
-				messagesContainer[0].scrollTop = messagesContainer[0].scrollHeight;
-				updateLSchatLength()
+			for (let chat in tempChats) {
+				if (chat.split("$").includes(targetName)) {
+					if(tempChats[chat].length != chats[chat].length){
+						messagesContainer[0].scrollTop = messagesContainer[0].scrollHeight;
+						updateLSchatLength()
+					}
+				}
+				
 			}
 		})
 	},3000)
@@ -59,7 +64,7 @@ function loadMessages(selectedName) {
 		$("#mobile-user-div h3").text(selectedName)
 	}
 	messageInput.show()
-	if (selectedName == "" || selectedName in chats == false){
+	if (selectedName == "" ||  !Object.keys(chats).map(e => e.split("$")).flat(1).includes(selectedName)){
 		messagesContainer.append("<h4>Select contact to see messages.")	
 		messageInput.hide()
 		window.location.hash = ""
@@ -69,15 +74,21 @@ function loadMessages(selectedName) {
 	
 	window.location.hash = selectedName
 	targetName = selectedName
-	for (let i = 0; i < chats[selectedName].length; i++) {
-		const element = chats[selectedName][i];
-		if(element[0] == accName){
-			messagesContainer.append('<div class="message-me"><p>' + sanitizeString(element[1]) + '</p></div>')
+	for(let chat in chats){
+		if(chat.split("$").includes(selectedName)){
+			for (let i = 0; i < chats[chat].length; i++) {
+				const element = chats[chat][i];
+				if(element[0] == accName){
+					messagesContainer.append('<div class="message-me"><p>' + sanitizeString(element[1]) + '</p></div>')
+				}
+				else{
+					messagesContainer.append('<div class="message-other"><p>' + sanitizeString(element[1]) + '</p></div>')
+				}
+				
+			}
+			
+
 		}
-		else{
-			messagesContainer.append('<div class="message-other"><p>' + sanitizeString(element[1]) + '</p></div>')
-		}
-		
 	}
 
 

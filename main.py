@@ -19,6 +19,8 @@ with open("db/listings.json") as fp:
     listings = json.load(fp)
 with open("db/reports.json") as fp:
     reports = json.load(fp)
+with open("db/chats.json") as fp:
+    chats = json.load(fp)
 # region helpers
 
 countries = {'Ascension Island': '🇦🇨', 'Andorra': '🇦🇩', 'United Arab Emirates': '🇦🇪', 'Afghanistan': '🇦🇫', 'Antigua & Barbuda': '🇦🇬', 'Anguilla': '🇦🇮', 'Albania': '🇦🇱', 'Armenia': '🇦🇲', 'Angola': '🇦🇴', 'Antarctica': '🇦🇶', 'Argentina': '🇦🇷', 'American Samoa': '🇦🇸', 'Austria': '🇦🇹', 'Australia': '🇦🇺', 'Aruba': '🇦🇼', 'Åland Islands': '🇦🇽', 'Azerbaijan': '🇦🇿', 'Bosnia & Herzegovina': '🇧🇦', 'Barbados': '🇧🇧', 'Bangladesh': '🇧🇩', 'Belgium': '🇧🇪', 'Burkina Faso': '🇧🇫', 'Bulgaria': '🇧🇬', 'Bahrain': '🇧🇭', 'Burundi': '🇧🇮', 'Benin': '🇧🇯', 'St. Barthélemy': '🇧🇱', 'Bermuda': '🇧🇲', 'Brunei': '🇧🇳', 'Bolivia': '🇧🇴', 'Caribbean Netherlands': '🇧🇶', 'Brazil': '🇧🇷', 'Bahamas': '🇧🇸', 'Bhutan': '🇧🇹', 'Bouvet Island': '🇧🇻', 'Botswana': '🇧🇼', 'Belarus': '🇧🇾', 'Belize': '🇧🇿', 'Canada': '🇨🇦', 'Cocos (Keeling) Islands': '🇨🇨', 'Congo - Kinshasa': '🇨🇩', 'Central African Republic': '🇨🇫', 'Congo - Brazzaville': '🇨🇬', 'Switzerland': '🇨🇭', 'Côte d’Ivoire': '🇨🇮', 'Cook Islands': '🇨🇰', 'Chile': '🇨🇱', 'Cameroon': '🇨🇲', 'China': '🇨🇳', 'Colombia': '🇨🇴', 'Clipperton Island': '🇨🇵', 'Costa Rica': '🇨🇷', 'Cuba': '🇨🇺', 'Cape Verde': '🇨🇻', 'Curaçao': '🇨🇼', 'Christmas Island': '🇨🇽', 'Cyprus': '🇨🇾', 'Czechia': '🇨🇿', 'Germany': '🇩🇪', 'Diego Garcia': '🇩🇬', 'Djibouti': '🇩🇯', 'Denmark': '🇩🇰', 'Dominica': '🇩🇲', 'Dominican Republic': '🇩🇴', 'Algeria': '🇩🇿', 'Ceuta & Melilla': '🇪🇦', 'Ecuador': '🇪🇨', 'Estonia': '🇪🇪', 'Egypt': '🇪🇬', 'Western Sahara': '🇪🇭', 'Eritrea': '🇪🇷', 'Spain': '🇪🇸', 'Ethiopia': '🇪🇹', 'European Union': '🇪🇺', 'Finland': '🇫🇮', 'Fiji': '🇫🇯', 'Falkland Islands': '🇫🇰', 'Micronesia': '🇫🇲', 'Faroe Islands': '🇫🇴', 'France': '🇫🇷', 'Gabon': '🇬🇦', 'United Kingdom': '🇬🇧', 'Grenada': '🇬🇩', 'Georgia': '🇬🇪', 'French Guiana': '🇬🇫', 'Guernsey': '🇬🇬', 'Ghana': '🇬🇭', 'Gibraltar': '🇬🇮', 'Greenland': '🇬🇱', 'Gambia': '🇬🇲', 'Guinea': '🇬🇳', 'Guadeloupe': '🇬🇵', 'Equatorial Guinea': '🇬🇶', 'Greece': '🇬🇷', 'South Georgia & South Sandwich Islands': '🇬🇸', 'Guatemala': '🇬🇹', 'Guam': '🇬🇺', 'Guinea-Bissau': '🇬🇼', 'Guyana': '🇬🇾', 'Hong Kong SAR China': '🇭🇰', 'Heard & McDonald Islands': '🇭🇲', 'Honduras': '🇭🇳', 'Croatia': '🇭🇷', 'Haiti': '🇭🇹', 'Hungary': '🇭🇺', 'Canary Islands': '🇮🇨', 'Indonesia': '🇮🇩', 'Ireland': '🇮🇪', 'Israel': '🇮🇱', 'Isle of Man': '🇮🇲', 'India': '🇮🇳', 'British Indian Ocean Territory': '🇮🇴', 'Iraq': '🇮🇶', 'Iran': '🇮🇷', 'Iceland': '🇮🇸', 'Italy': '🇮🇹', 'Jersey': '🇯🇪', 'Jamaica': '🇯🇲', 'Jordan': '🇯🇴', 'Japan': '🇯🇵', 'Kenya': '🇰🇪', 'Kyrgyzstan': '🇰🇬', 'Cambodia': '🇰🇭', 'Kiribati': '🇰🇮', 'Comoros': '🇰🇲', 'St. Kitts & Nevis': '🇰🇳', 'North Korea': '🇰🇵', 'South Korea': '🇰🇷', 'Kuwait': '🇰🇼', 'Cayman Islands': '🇰🇾', 'Kazakhstan': '🇰🇿', 'Laos': '🇱🇦', 'Lebanon': '🇱🇧', 'St. Lucia': '🇱🇨', 'Liechtenstein': '🇱🇮', 'Sri Lanka': '🇱🇰', 'Liberia': '🇱🇷', 'Lesotho': '🇱🇸', 'Lithuania': '🇱🇹', 'Luxembourg': '🇱🇺', 'Latvia': '🇱🇻', 'Libya': '🇱🇾', 'Morocco': '🇲🇦', 'Monaco': '🇲🇨', 'Moldova': '🇲🇩', 'Montenegro': '🇲🇪', 'St. Martin': '🇲🇫', 'Madagascar': '🇲🇬', 'Marshall Islands': '🇲🇭', 'North Macedonia': '🇲🇰', 'Mali': '🇲🇱', 'Myanmar (Burma)': '🇲🇲', 'Mongolia': '🇲🇳', 'Macao Sar China': '🇲🇴', 'Northern Mariana Islands': '🇲🇵', 'Martinique': '🇲🇶', 'Mauritania': '🇲🇷', 'Montserrat': '🇲🇸', 'Malta': '🇲🇹', 'Mauritius': '🇲🇺', 'Maldives': '🇲🇻', 'Malawi': '🇲🇼', 'Mexico': '🇲🇽', 'Malaysia': '🇲🇾', 'Mozambique': '🇲🇿', 'Namibia': '🇳🇦', 'New Caledonia': '🇳🇨', 'Niger': '🇳🇪', 'Norfolk Island': '🇳🇫', 'Nigeria': '🇳🇬', 'Nicaragua': '🇳🇮', 'Netherlands': '🇳🇱', 'Norway': '🇳🇴', 'Nepal': '🇳🇵', 'Nauru': '🇳🇷', 'Niue': '🇳🇺', 'New Zealand': '🇳🇿', 'Oman': '🇴🇲', 'Panama': '🇵🇦', 'Peru': '🇵🇪', 'French Polynesia': '🇵🇫', 'Papua New Guinea': '🇵🇬', 'Philippines': '🇵🇭', 'Pakistan': '🇵🇰', 'Poland': '🇵🇱', 'St. Pierre & Miquelon': '🇵🇲', 'Pitcairn Islands': '🇵🇳', 'Puerto Rico': '🇵🇷', 'Palestinian Territories': '🇵🇸', 'Portugal': '🇵🇹', 'Palau': '🇵🇼', 'Paraguay': '🇵🇾', 'Qatar': '🇶🇦', 'Réunion': '🇷🇪', 'Romania': '🇷🇴', 'Serbia': '🇷🇸', 'Russia': '🇷🇺', 'Rwanda': '🇷🇼', 'Saudi Arabia': '🇸🇦', 'Solomon Islands': '🇸🇧', 'Seychelles': '🇸🇨', 'Sudan': '🇸🇩', 'Sweden': '🇸🇪', 'Singapore': '🇸🇬', 'St. Helena': '🇸🇭', 'Slovenia': '🇸🇮', 'Svalbard & Jan Mayen': '🇸🇯', 'Slovakia': '🇸🇰', 'Sierra Leone': '🇸🇱', 'San Marino': '🇸🇲', 'Senegal': '🇸🇳', 'Somalia': '🇸🇴', 'Suriname': '🇸🇷', 'South Sudan': '🇸🇸', 'São Tomé & Príncipe': '🇸🇹', 'El Salvador': '🇸🇻', 'Sint Maarten': '🇸🇽', 'Syria': '🇸🇾', 'Eswatini': '🇸🇿', 'Tristan Da Cunha': '🇹🇦', 'Turks & Caicos Islands': '🇹🇨', 'Chad': '🇹🇩', 'French Southern Territories': '🇹🇫', 'Togo': '🇹🇬', 'Thailand': '🇹🇭', 'Tajikistan': '🇹🇯', 'Tokelau': '🇹🇰', 'Timor-Leste': '🇹🇱', 'Turkmenistan': '🇹🇲', 'Tunisia': '🇹🇳', 'Tonga': '🇹🇴', 'Turkey': '🇹🇷', 'Trinidad & Tobago': '🇹🇹', 'Tuvalu': '🇹🇻', 'Taiwan': '🇹🇼', 'Tanzania': '🇹🇿', 'Ukraine': '🇺🇦', 'Uganda': '🇺🇬', 'U.S. Outlying Islands': '🇺🇲', 'United Nations': '🇺🇳', 'United States': '🇺🇸', 'Uruguay': '🇺🇾', 'Uzbekistan': '🇺🇿', 'Vatican City': '🇻🇦', 'St. Vincent & Grenadines': '🇻🇨', 'Venezuela': '🇻🇪', 'British Virgin Islands': '🇻🇬', 'U.S. Virgin Islands': '🇻🇮', 'Vietnam': '🇻🇳', 'Vanuatu': '🇻🇺', 'Wallis & Futuna': '🇼🇫', 'Samoa': '🇼🇸', 'Kosovo': '🇽🇰', 'Yemen': '🇾🇪', 'Mayotte': '🇾🇹', 'South Africa': '🇿🇦', 'Zambia': '🇿🇲', 'Zimbabwe': '🇿🇼'}
@@ -29,18 +31,33 @@ def dumpJson():
     global user_data
     global listings
     global reports
+    global chats
     with open("db/users.json", "w+") as fp:
         json.dump(user_data, fp, indent=4)
     with open("db/listings.json", "w+") as fp:
         json.dump(listings, fp, indent=4)
     with open("db/reports.json", "w+") as fp:
         json.dump(reports, fp, indent=4)
+    with open("db/chats.json", "w+") as fp:
+        json.dump(chats, fp, indent=4)
     with open("db/users.json") as fp:
         user_data = json.load(fp)
     with open("db/listings.json") as fp:
         listings = json.load(fp)
     with open("db/reports.json") as fp:
         reports = json.load(fp)
+    with open("db/chats.json") as fp:
+        chats = json.load(fp)
+
+
+
+
+def getUserChats(username):
+    userChats = {}
+    for chat in chats:
+        if username in chat.split("$"):
+            userChats[chat] = chats[chat]
+    return userChats
 # endregion
 
 
@@ -89,7 +106,7 @@ def sign_up():
         user_data[name]['phone'] = phone
         user_data[name]["listings"] = []
         user_data[name]["favs"] = []
-        user_data[name]["chats"] = {}
+        # user_data[name]["chats"] = {}
         '''
         chats = 
             {
@@ -405,14 +422,16 @@ def changePfp():
 
 
 @app.route('/chats')
-def chats():
+def chatsPage():
     username = request.cookies.get("name")
     pw = request.cookies.get("pw")
 
     if  username and  pw:
         if hasher(pw) == user_data[username]["pw"]:
-            print(type(user_data[username]["chats"]))
-            return render_template("chats.html", chats=user_data[username]["chats"], logged=True, username=username, pw=pw, r=random.randint(0, 10000))
+            userChats = getUserChats(username)
+            print(userChats)
+       
+            return render_template("chats.html", logged=True, username=username ,pw=pw, chats=userChats,r=random.randint(0, 10000))
         flash("Wrong password", category="error")
     else:
         flash("Please login first", category="error")
@@ -427,10 +446,11 @@ def addUserToChat(targetName):
     pw = request.cookies.get('pw')
 
     if hasher(pw) == user_data[username]["pw"]:
-        if targetName in user_data[username]["chats"].keys():
+        userChats = getUserChats(username)
+        print(userChats)
+        if targetName in userChats.keys():
             return redirect("/chats#" + targetName)
-        user_data[username]["chats"][targetName] = []
-        user_data[targetName]["chats"][username] = []
+        chats[f"{username}${targetName}"] = []
         dumpJson()
         return redirect("/chats#" + targetName)
 
@@ -447,8 +467,10 @@ def sendMessage(targetName):
     message = request.form.get('message')
 
     if hasher(pw) == user_data[username]["pw"]:
-        user_data[username]["chats"][targetName].append([username, message])
-        user_data[targetName]["chats"][username].append([username, message])
+        for chat in chats:
+            chat = chat.split("$")
+            if username in chat and targetName in chat:
+                chats["$".join(chat)].append([username, message])
         dumpJson()
         return "sent"
     else:
@@ -461,7 +483,7 @@ def getMyMessages():
     pw = request.cookies.get('pw')
     
     if hasher(pw) == user_data[username]['pw']:
-        return jsonify(user_data[username]["chats"])
+        return jsonify(getUserChats(username))
     else:
         return "wrong password"
 
@@ -516,9 +538,11 @@ def get_chat_length():
      
         if hasher(pw) == user_data[username]["pw"]:
             res = 0
-            for chat in user_data[username]["chats"]:
-                res += len(user_data[username]["chats"][chat])
+            for chat in chats:
+                if username in chat.split("$"):
+                    res += len(chats[chat])
             return jsonify({"res":res})
+
 
         else:
             return "wrong password"
