@@ -195,7 +195,7 @@ font-size: 45px;
         zoom: 80%;
     }
 }
-@media only screen and (max-width: 576px){
+@media only screen and (max-width: 1154px){
     #target-pfp {
         left: 12%;
     }
@@ -206,17 +206,15 @@ font-size: 45px;
         left: 47%;
         top:90px;
     }
-    .fa-phone-alt {
-        left: 47%;
-        top: 150px;
-    }
+
 
     #phone {
         left: 52.4%;
         top: 150px
     }
     .fa-phone-alt {
-        left:42%;
+        left:48%;
+        top: 157.2px;
     }
     #search-res {
         margin-top:40px;

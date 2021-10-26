@@ -23,6 +23,7 @@ h2{
     background: linear-gradient( 
 	90deg, rgb(45 49 66) 1%, rgb(53 59 81) 100%, rgb(45 49 66) 100% );
 
+    animation: chat-container-anim ease-in-out 0.5s;
 
 }
 
@@ -215,6 +216,9 @@ background: #7586c2;
     /* #container {
         display:none
     } */
+    #signup-login-container {
+        zoom: 90%;
+    }
 
     #container {
         zoom: 80%;
@@ -309,5 +313,51 @@ background: #7586c2;
         box-shadow: 0 0 16px #00000085;
         position: fixed;
     }
+
+    #new-chat-button {
+            z-index: 100;
+            top: -7% !important;
+            right: 6% !important;
+            width: 50px !important;
+            box-shadow: none !important;
+    }
 }
 
+
+
+@keyframes chat-container-anim {
+    from {
+        opacity: 0.2;
+        transform: translate(-50%, -50%) scale(0.2)
+    }
+    to { 
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1)
+    }
+    
+}
+
+
+#new-chat-button {
+        background-color: #EF8354;
+    color: white;
+    width: 102px;
+    height: 35px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    cursor: pointer;
+    position: absolute;
+    right: 75%;
+    top: -10%;
+    box-shadow: 0 0 11px 0px #ef8354;
+    font-size: 24px;
+}
+
+
+#new-chat-button:hover {
+    background-color: #f09a75;
+
+}

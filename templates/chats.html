@@ -73,9 +73,13 @@
 
 	<h3 id="desktop-only-warning">To use Chats, open Sellio on a desktop.<br><i class="fas fa-desktop"></i> <br> <a href="/">Home</a></h3>
 	<div id="container">
+          <div id="new-chat-button" onclick="NewChat()">
+               <i class="fas fa-plus-circle" aria-hidden="true"></i>
+               <!-- <span>New Chat</span> -->
+          </div>
 		<div id="contact-list">
 			{%for chat in chats%}
-                    {%with c = chat|replace(username, "")%}
+                    {%with c = chat|replace(username +"$", "")|replace("$" +username, "")%}
                     {%set contact = c.replace("$", "")%}
                     <div class="contact" id="{{contact}}" onclick="loadMessages('{{contact}}')">
                          <img onclick="window.location.href = '/user/{{contact}}'" src="/static/pfps/{{contact}}.jpg" onerror="if (this.src != 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar') this.src = 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar';">

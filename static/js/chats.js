@@ -146,4 +146,37 @@ function ShowMobileContacts() {
 	});
 }
 
+function NewChat() {
+	$("#signup-login-container").html(`
+		<center><h3>New Chat</h3></center>
+		<br>
+		<input onkeyup="SearchUsers(this.value)" type="search" placeholder="Search users"/>
+		<br>
+		<div style="margin-top:20px" id="new-chat-users"></div>
+	`)
+	ShowAuth()
+}
 
+
+
+function SearchUsers(value){
+	$("#new-chat-users").html("")
+	if(value.trim() == "")return
+	fetch("/search-users_q=" + value).then(res => res.json()).then((res) => {
+		res = res['res']
+		console.log(res)
+		for (let i = 0; i < res.length; i++) {
+			const user = res[i];
+			if(user == accName || Object.keys(chats).toString().includes(user))continue
+			$("#new-chat-users").append(`
+			<div class="contact" style="border-radius:10px" onclick="window.location.href = '/add-user-to-chat_user=${user}'"> 
+				<img onclick="window.location.href = '/user/${user}'" src="static/pfps/${user}.jpg" onerror="if (this.src != 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar') this.src = 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar';">
+				<h3 style="margin-left:0">${user}</h3></div>
+			
+			`)
+			
+			
+			
+		}
+	})
+}

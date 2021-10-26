@@ -23,6 +23,10 @@
         [
             "karim",
             "fgh"
+        ],
+        [
+            "tester",
+            "sdffd"
         ]
     ],
     "karim$kaka": [
@@ -56,5 +60,13 @@
             "karim",
             "sdf"
         ]
-    ]
+    ],
+    "chattest$karim": [
+        [
+            "chattest",
+            "sd"
+        ]
+    ],
+    "karim$man": [],
+    "karim$karims": []
 }

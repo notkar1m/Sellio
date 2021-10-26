@@ -23,7 +23,7 @@ $(() => {
 })
 
 function newChatNotiCircle() {
-	$($(".navbar-links")[1]).append('<i id="unread-circle" class="fas fa-circle"></i>')
+	$(".navbar-links:contains(Chats)").append('<i id="unread-circle" class="fas fa-circle"></i>')
 }
 
 function switchLoginAndSignup(){

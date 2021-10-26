@@ -3,6 +3,7 @@
 	min-width: 50%;
 	width: fit-content;
 	margin-top: 2%;
+    animation: container-anim ease-in-out 0.3s;
 }
 #images-container #plus-div {
     height: 100px;
@@ -282,4 +283,18 @@ left: 33%;
     #images-container h3 {
         display: none;
     }
+}
+
+
+
+@keyframes container-anim {
+    from { 
+        opacity: 0.2;
+        transform: scale(0.2)
+    }
+    to { 
+        opacity: 1;
+        transform: scale(1)
+    }
+    
 }

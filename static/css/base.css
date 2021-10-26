@@ -61,6 +61,8 @@ body {
 	box-shadow: 0 11px 40px #4f5d75, 0 0 0 10px #2d3142;
 	zoom: 110%;
 	animation: popup-anim 0.4s;	
+	max-height: 80%;
+	overflow-y: auto;
 
 }
 

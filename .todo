@@ -1,5 +1,4 @@
-be able to add new chat in chats
-add category specific specifcation in the creation like for example cpu clock speed, etc...
+add category specific specification in the creation like for example cpu clock speed, etc...
 make the db use mongodb instead of json
 (maybe) phone number verifying
 

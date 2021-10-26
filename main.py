@@ -9,6 +9,7 @@ import requests
 from shortuuid import uuid
 import os
 import shutil
+import time
 from countryinfo import CountryInfo
 app = Flask(__name__)
 
@@ -120,6 +121,7 @@ def sign_up():
         
 
         dumpJson()
+        time.sleep(2)
 
         cookie = make_response(redirect("/"))
         cookie.set_cookie('name', name)
@@ -448,7 +450,7 @@ def addUserToChat(targetName):
     if hasher(pw) == user_data[username]["pw"]:
         userChats = getUserChats(username)
         print(userChats)
-        if targetName in userChats.keys():
+        if targetName in "".join(userChats.keys()):
             return redirect("/chats#" + targetName)
         chats[f"{username}${targetName}"] = []
         dumpJson()
@@ -547,6 +549,21 @@ def get_chat_length():
         else:
             return "wrong password"
     
+@app.route('/search-users_q=<q>')
+def search_users(q):
+    tl = q.lower()
+    res = []
+    for user in user_data:
+        userl = user.lower()
+        if userl in tl or tl.endswith(userl) or userl.endswith(tl) or tl.startswith(userl) or userl.startswith(tl) or tl == userl or tl in userl:
+            
+            res.append(user)
+
+    return jsonify({"res":res})
+
+    
+
+
 
 @app.route('/flash=<flashMessage>_url=<url>')
 def customFlash(flashMessage, url):
