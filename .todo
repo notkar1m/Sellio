@@ -1,3 +1,7 @@
+overflow position fixed problem in listing
+search new chat multiple times same user
+fix chat
+compress listing images because they taek alot of time to load
 add category specific specification in the creation like for example cpu clock speed, etc...
 make the db use mongodb instead of json
 (maybe) phone number verifying

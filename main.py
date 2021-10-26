@@ -398,7 +398,10 @@ def removeListing(id):
         return jsonify({"res":"listing not found"})
 
     for _ in range(len(listings[id]["imageType"])):
-        shutil.rmtree("./static/listing_images/" + id )
+        try:
+            shutil.rmtree("./static/listing_images/" + id )
+        except:
+            pass
     user_data[username]["listings"].remove(id)
     del listings[id]
     for user in user_data:

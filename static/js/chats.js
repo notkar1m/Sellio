@@ -150,18 +150,28 @@ function NewChat() {
 	$("#signup-login-container").html(`
 		<center><h3>New Chat</h3></center>
 		<br>
-		<input onkeyup="SearchUsers(this.value)" type="search" placeholder="Search users"/>
-		<br>
+		<input style="width:241px" type="search" placeholder="Search users"/> <button onclick="SearchUsers()" style="width: 50px;position: relative;left: 130px;top: -49px;font-size: 20px;padding: 23px;" > <i class="fa fa-search" ></i></button>
 		<div style="margin-top:20px" id="new-chat-users"></div>
 	`)
+	$("#signup-login-container input").first().keydown(function (event) {
+		if (event.key === "Enter"){
+			SearchUsers()
+			
+		}
+	
+	})
 	ShowAuth()
 }
 
 
 
-function SearchUsers(value){
+function SearchUsers(){
+	var value = $("#signup-login-container input").first().val()
 	$("#new-chat-users").html("")
-	if(value.trim() == "")return
+	if(value.trim() == ""){
+		$("#new-chat-users").html("")
+		return
+	}
 	fetch("/search-users_q=" + value).then(res => res.json()).then((res) => {
 		res = res['res']
 		console.log(res)
@@ -180,3 +190,4 @@ function SearchUsers(value){
 		}
 	})
 }
+
