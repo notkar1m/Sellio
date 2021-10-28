@@ -15,11 +15,17 @@ $(() => {
 			let tempChats = chats
 			chats = res
 			loadMessages(targetName)
-			for (let chat in tempChats) {
-				if (chat.split("$").includes(targetName)) {
-					if(tempChats[chat].length != chats[chat].length){
-						messagesContainer[0].scrollTop = messagesContainer[0].scrollHeight;
-						updateLSchatLength()
+			for (let i=0;i<tempChats.length;i++) {
+				chat = tempChats[i]
+				if (chat.users.includes(targetName)) {
+					for (let i = 0; i < chats.length;i++){
+						let element = chats[i]
+						if (element.users == chat.users){
+							if(chat.chat.length != chats[chat.users].chat.length){
+								messagesContainer[0].scrollTop = messagesContainer[0].scrollHeight;
+								updateLSchatLength()
+							}
+						}
 					}
 				}
 				
@@ -64,7 +70,7 @@ function loadMessages(selectedName) {
 		$("#mobile-user-div h3").text(selectedName)
 	}
 	messageInput.show()
-	if (selectedName == "" ||  !Object.keys(chats).map(e => e.split("$")).flat(1).includes(selectedName)){
+	if (selectedName == "" ||  !chats.map(e => e.users).flat(1).includes(selectedName)){
 		messagesContainer.append("<h4>Select contact to see messages.")	
 		messageInput.hide()
 		window.location.hash = ""
@@ -74,10 +80,11 @@ function loadMessages(selectedName) {
 	
 	window.location.hash = selectedName
 	targetName = selectedName
-	for(let chat in chats){
-		if(chat.split("$").includes(selectedName)){
-			for (let i = 0; i < chats[chat].length; i++) {
-				const element = chats[chat][i];
+	for(let i = 0; i < chats.length; i++){
+		chat = chats[i]
+		if(chat.users.includes(selectedName)){
+			for (let j = 0; j < chat.chat.length; j++) {
+				const element = chats[i].chat[j];
 				if(element[0] == accName){
 					messagesContainer.append('<div class="message-me"><p>' + sanitizeString(element[1]) + '</p></div>')
 				}
@@ -99,9 +106,9 @@ function loadMessages(selectedName) {
 			let r = $( this ).text().toLowerCase() == selectedName
 			if (r) return r
 			else{
-				$(this).parent().css("background", "#373c53")
+				$(this).parent().css("background", "#494f6a")
 			}
-		}).first().parent().css("background", "#494f6a")
+		}).first().parent().css("background", "#373c53")
 
 		
 
@@ -109,8 +116,14 @@ function loadMessages(selectedName) {
 
 
 function sendMessage(msg) {
-
+	
 	if(msg.trim() == "")return
+	if(msg.length > 2000){
+		iziToast.error({
+			title: "Message is too long!"
+		})
+		return
+	}
 	$("#message-input").val("")
 	let formData = new FormData();
 	formData.append("message", msg);
@@ -177,7 +190,7 @@ function SearchUsers(){
 		console.log(res)
 		for (let i = 0; i < res.length; i++) {
 			const user = res[i];
-			if(user == accName || Object.keys(chats).toString().includes(user))continue
+			if(user == accName || chats.map(e=>e.users).flat(1).includes(user))continue
 			$("#new-chat-users").append(`
 			<div class="contact" style="border-radius:10px" onclick="window.location.href = '/add-user-to-chat_user=${user}'"> 
 				<img onclick="window.location.href = '/user/${user}'" src="static/pfps/${user}.jpg" onerror="if (this.src != 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar') this.src = 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar';">

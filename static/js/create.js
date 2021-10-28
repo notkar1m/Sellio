@@ -100,6 +100,20 @@ $(() => {
             return
         }
 
+        if(title > 45){
+            iziToast.error({
+                title: "Title too long",
+                message: "Max is 45 characters."
+            })
+            return
+        }
+        if(description > 300){
+            iziToast.error({
+                title: "Description too long",
+                message: "Max is 300 characters."
+            })
+            return
+        }
 
         if(parseInt(price) < 1 || parseInt(price) > 100000){
              iziToast.error({

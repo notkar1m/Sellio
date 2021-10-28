@@ -79,13 +79,11 @@
           </div>
 		<div id="contact-list">
 			{%for chat in chats%}
-                    {%with c = chat|replace(username +"$", "")|replace("$" +username, "")%}
-                    {%set contact = c.replace("$", "")%}
+                    {%set contact = chat["users"].pop(chat["users"].index(username) -1)%}
                     <div class="contact" id="{{contact}}" onclick="loadMessages('{{contact}}')">
                          <img onclick="window.location.href = '/user/{{contact}}'" src="/static/pfps/{{contact}}.jpg" onerror="if (this.src != 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar') this.src = 'https://api-private.atlassian.com/users/aa7543e682dff486562017fe2fedc6c0/avatar';">
                          <h3>{{contact}}</h3>
                     </div>
-                    {%endwith%}
 			{%endfor%}
 			{%if chats|length == 0%}
 			<center><h4>No chats yet.</h4></center>
