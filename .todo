@@ -1,7 +1,11 @@
-fix chat
+(update: i think its fixed but ill have to wait until tomorrow so i can restart the app and the changes can take effect)
+(and also a potential solution might be to remove the part in the dump json that re assigns the variables so i want to try that to see if it soves the issue)
+(for the now the temp fix is to save the variable in memory as a variable instaed of json)
+make the db use mongodb instead of json
+fix chat (i think the problem is that it takes more time to save json files on the server)
+actually even just posting a listing is causing problems because of the file saving issue so i need to use mongodb 
 compress listing images because they taek alot of time to load
 add category specific specification in the creation like for example cpu clock speed, etc...
-make the db use mongodb instead of json
 (maybe) phone number verifying
 
 

@@ -117,11 +117,12 @@ html {
     color: #656565;
 }
 h2 {
-    width: 713px;
+    width: 33.5%;
     position: absolute;
     top: 448px;
     left: 852px;
     font-size: 31px;
+    word-break: break-word;
 }
 #message-btn {
     width: 210px;
