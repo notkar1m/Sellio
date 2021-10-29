@@ -325,7 +325,7 @@ function ContactUs() {
 
 function SendFromContactUs() {
 	let message = $("#contact-us-message").val()
-	let formData = new FormData().show();
+	let formData = new FormData()
 	formData.append("message", message)
 	formData.append("username", accName)
 
