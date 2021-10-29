@@ -162,7 +162,7 @@
             <h3>{{listing["title"]}}</h3>
             <br>
             <p class="latest-listings-listing-price">{{listing["currency"]}} {{listing["price"]}}</p>
-            <i class="far fa-trash-alt" onclick="DeleteListing('{{listing["id"]}}')"></i>
+            <i class="far fa-trash-alt" onclick="DeleteListing('{{listing["id"]}}', event)"></i>
 	      </div>
 				
           {%else%}

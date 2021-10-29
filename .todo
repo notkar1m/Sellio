@@ -1,4 +1,5 @@
 compress listing images because they taek alot of time to load
+replace country flag emojis with country flag images using https://flagcdn.com/72x54/eg.png (example)
 add category specific specification in the creation like for example cpu clock speed, etc...
 (maybe) phone number verifying
 

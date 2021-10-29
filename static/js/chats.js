@@ -14,16 +14,16 @@ $(() => {
 		fetch("/get-my-messages").then((res) => {return res.json()}).then((res) => {
 			let tempChats = chats
 			chats = res
-			loadMessages(targetName)
-			for (let i=0;i<tempChats.length;i++) {
-				chat = tempChats[i]
+			for (let j=0;j<tempChats.length;j++) {
+				chat = tempChats[j]
 				if (chat.users.includes(targetName)) {
 					for (let i = 0; i < chats.length;i++){
 						let element = chats[i]
-						if (element.users == chat.users){
-							if(chat.chat.length != chats[chat.users].chat.length){
+						if (element.users.toString() == chat.users.toString()){
+							if(chat.chat.length != chats[j].chat.length){
 								messagesContainer[0].scrollTop = messagesContainer[0].scrollHeight;
 								updateLSchatLength()
+								loadMessages(targetName)
 							}
 						}
 					}

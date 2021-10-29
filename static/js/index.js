@@ -69,7 +69,7 @@ function Search(val) {
 	<h3>${listing["title"]}</h3>
 	<br>
 		<p>${res[listing.currency]["symbol"] + " " +parseInt(listing["price"]).toLocaleString()}</p>
-	<i class="far fa-trash-alt" onclick="DeleteListing('${listing.id}')"></i>
+	<i class="far fa-trash-alt" onclick="DeleteListing('${listing.id}', event)"></i>
       </div>
 			`)
 			})
@@ -185,7 +185,7 @@ function chooseCategory(category){
 				<h3>${listing["title"]}</h3>
 				<br>
 				<p>${res[listing.currency]["symbol"] + " " +parseInt(listing["price"]).toLocaleString()}</p>
-				<i class="far fa-trash-alt" onclick="DeleteListing('${listing.id}')"></i>
+				<i class="far fa-trash-alt" onclick="DeleteListing('${listing.id}', event)"></i>
 			      </div>
 						`)
 			})
@@ -260,7 +260,8 @@ $(() => {
 
 
 
-function DeleteListing(id){
+function DeleteListing(id, event){
+	if(event)event.stopPropagation();
 	fetch("/remove-listing_id=" +id).then((res)=>{return res.json()}).then((res) => {
 		res = res["res"]
 		if (res == "success"){
