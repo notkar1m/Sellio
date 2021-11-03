@@ -29,14 +29,14 @@
         <script>
           iziToast.error({
               title: 'Error',
-              message: '{{message}}',
+              message: '{{message}}'.replace("%20", " "),
           });
             </script>
         {% else %}
         <script>
           iziToast.success({
             title: 'OK',
-            message: "{{message}}",
+            message: "{{message}}".replace("%20", " "),
         });
             </script>
          {% endif %} 

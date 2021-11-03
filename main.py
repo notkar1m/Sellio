@@ -11,11 +11,13 @@ import os
 import shutil
 import time
 from countryinfo import CountryInfo
-import pymongo
+# import pymongo
+from flask_pymongo import PyMongo
 import base64
 app = Flask(__name__)
-client = pymongo.MongoClient(base64.b64decode("bW9uZ29kYitzcnY6Ly9hZG1pbjphZG1pbkBjbHVzdGVyMC56Y3hhOC5tb25nb2RiLm5ldC9kYj9yZXRyeVdyaXRlcz10cnVlJnc9bWFqb3JpdHkmc3NsPXRydWUmc3NsX2NlcnRfcmVxcz1DRVJUX05PTkU=".encode()).decode())
-db = client["db"]
+# client = pymongo.MongoClient(base64.b64decode("bW9uZ29kYitzcnY6Ly9hZG1pbjphZG1pbkBjbHVzdGVyMC56Y3hhOC5tb25nb2RiLm5ldC9kYj9yZXRyeVdyaXRlcz10cnVlJnc9bWFqb3JpdHkmc3NsPXRydWUmc3NsX2NlcnRfcmVxcz1DRVJUX05PTkU=".encode()).decode())
+client = PyMongo(app,uri=base64.b64decode("bW9uZ29kYitzcnY6Ly9hZG1pbjphZG1pbkBjbHVzdGVyMC56Y3hhOC5tb25nb2RiLm5ldC9kYj9yZXRyeVdyaXRlcz10cnVlJnc9bWFqb3JpdHkmc3NsPXRydWUmc3NsX2NlcnRfcmVxcz1DRVJUX05PTkU=".encode()).decode())
+db = client.db
 
 app.config["SECRET_KEY"] = "SDFL:JSDFLKJSDFlJKSDFlkj"
 
@@ -254,7 +256,7 @@ def lising(listingId):
     or db.users.find_one({"username": cookie_name})["pw"] != hasher(cookie_pw)
     ):
 
-        return render_template('listing.html', listing=listing.randint(0, 10000))
+        return render_template('listing.html', listing=listing, r=r.randint(0, 10000))
 
 
     return render_template('listing.html', listing=listing, targetPhone=db.users.find_one({"username":listing["owner"]})["phone"] , logged=True, username=cookie_name, pw=cookie_pw, r=random.randint(0, 10000))

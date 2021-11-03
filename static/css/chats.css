@@ -312,6 +312,7 @@ background: #7586c2;
         top: 43%;
         box-shadow: 0 0 16px #00000085;
         position: fixed;
+        overflow-x: hidden;
     }
 
     #new-chat-button {
