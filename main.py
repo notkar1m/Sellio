@@ -100,7 +100,7 @@ def sign_up():
 def login():
     name = request.form.get('name')
     pw = request.form.get('pw')
-    if db.users.find({"username": name}):
+    if db.users.find_one({"username": name}):
         if db.users.find_one({"username": name})["pw"] == hasher(pw):
             cookie = make_response(redirect("/"))
             cookie.set_cookie('name', name)
@@ -256,7 +256,7 @@ def lising(listingId):
     or db.users.find_one({"username": cookie_name})["pw"] != hasher(cookie_pw)
     ):
 
-        return render_template('listing.html', listing=listing, r=r.randint(0, 10000))
+        return render_template('listing.html', listing=listing, r=random.randint(0, 10000))
 
 
     return render_template('listing.html', listing=listing, targetPhone=db.users.find_one({"username":listing["owner"]})["phone"] , logged=True, username=cookie_name, pw=cookie_pw, r=random.randint(0, 10000))

@@ -1,9 +1,26 @@
 var allFiles = []
 $(() => {
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+
+    if(getCookie("inviteFriendPopUp") == "false"){
+        $("#friend-invite").hide()
+    }
+
+
     $("#clear-btn").hide()
 	$("#clear-btn").click(() => {
         $("#result").html('') 
 		document.getElementById("images-files").value = ''
+        allFiles = []
 		$("#plus-div").css("opacity",1)
         $("#plus-div").css("pointer-events","all")
         $("#images-files").removeAttr("disabled")
@@ -22,10 +39,11 @@ $(() => {
             for(var i = 0; i< files.length; i++)
             {
                 var file = files[i];
-                
                 //Only pics
-                if(!file.type.match('image'))
-                  continue
+                if(!file.type.match('image')){
+                    iziToast.error({title: "Error", message:"Only image files allowed!"})
+                    return
+                }
                 
                 var picReader = new FileReader();
                 
@@ -151,3 +169,39 @@ $(() => {
 
     $("#publish-btn").click(Publish)    
 })
+
+
+function InviteFriends() {
+
+    $("#signup-login-container").html(`
+        <center><h3>Invite Friends</h3></center>
+
+        <input style="font-size:12px;margin-left:-10px;margin-top:21px" readonly value="Hey, check out this website! You can sell your old PC parts and buy new ones. https://sell-io.com"></input>
+
+        <button onclick="$('#signup-login-container input')[0].select();document.execCommand('copy');DontShowFriendInvite();iziToast.success({title:'Copied!'})" style="font-size:19px;margin-top:30px">Copy</button>
+        <p style="    opacity: 1 !important;
+    text-decoration: none;
+    cursor: initial;
+    font-size: 14px;
+    margin-top: 20px;
+    text-align: center;">Send this to all of your friends and the more friends you invite, the more popularity you listing is going to gain.</p>
+    `)
+    	$("#signup-login-container input")[0].select()
+	document.execCommand('copy');
+	iziToast.success({title: "Copied!"})
+
+    ShowAuth()
+    
+
+}
+
+
+function DontShowFriendInvite() {
+    //This adds a cookie to make it not show the popup for 2 weeks and when the cookie expires it shows it again
+    var today = new Date();
+    var expire = new Date();
+    var cookieName = "inviteFriendPopUp"
+    var cookieValue = "false"
+    expire.setTime(today.getTime() + 3600000*24*14);
+    document.cookie = cookieName+"="+encodeURI(cookieValue) + ";expires="+expire.toGMTString();
+}

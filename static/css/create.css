@@ -298,3 +298,39 @@ left: 33%;
     }
     
 }
+
+
+#friend-invite {
+        text-align: center;
+        margin-top: 30px;
+        background: #ef8354;
+        padding: 12px;
+        border-radius: 27px;
+        color: white;
+        box-shadow: 0 0 20px #f09a75;
+        font-weight: 500;
+}
+
+#friend-invite button {
+    background-color: #2d3142;
+    color: white;
+    width: 130px;
+    height: 35px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: auto;
+    box-shadow: 0 0 20px #2d3142;
+    font-size: 20px;
+    border: none;
+    margin-top: 20px;
+    height: 40px;
+    transition: 0.3s;
+    
+}
+#friend-invite button:hover {
+    box-shadow:0 0 20px 3px #2d3142;
+}
