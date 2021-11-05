@@ -135,7 +135,14 @@ function Fav(ele, event, noFetch){
 	$(ele).attr("onclick", "UnFav(this, event)")
 	if(noFetch){
 		return
-
+	}
+	if(!parent.getElementsByTagName("img")[0]){
+			fetch("/add-to-fav_listingId=" + $(".listing-images")[0].src.split("/")[5]).then((res)=>{return res.json()}).then(
+		(res)=>{
+			console.log(res["res"]);
+		}
+		)
+		return
 	}
 	fetch("/add-to-fav_listingId=" + parent.getElementsByTagName("img")[0].src.split("/")[5]).then((res)=>{return res.json()}).then(
 		(res)=>{
@@ -153,6 +160,14 @@ function UnFav(ele, event, noFetch){
 	$(ele).addClass("far")
 	$(ele).attr("onclick", "Fav(this, event)")
 	if(noFetch)return
+	if(!parent.getElementsByTagName("img")[0]){
+		fetch("/remove-from-fav_listingId=" + $(".listing-images")[0].src.split("/")[5]).then((res)=>{return res.json()}).then(
+		(res)=>{
+			console.log(res["res"]);
+		}
+		)
+		return
+	}
 	fetch("/remove-from-fav_listingId=" + parent.getElementsByTagName("img")[0].src.split("/")[5]).then((res)=>{return res.json()}).then(
 		(res)=>{
 			console.log(res["res"]);

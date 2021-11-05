@@ -119,6 +119,10 @@
       $("#change-pfp-input").click()
       $("#change-pfp-input")[0].onchange = (event) => {
       let formData = new FormData();
+      if(!event.target.files[0].type.match("image")){
+        iziToast.error({title: "Error", message: "Only image files allowed!"})
+        return
+      }
       formData.append("image", event.target.files[0])
         fetch("/change-pfp", {
           method: "POST",

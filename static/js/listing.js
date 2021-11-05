@@ -75,6 +75,7 @@ $(() => {
 	}
 
 function Fav(ele, event, noFetch){
+	console.log("from listing.js");
 	if(event)event.stopPropagation();
 	let parent = ele.parentElement;
 	$(ele).removeClass("far")
